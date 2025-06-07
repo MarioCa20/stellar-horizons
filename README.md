@@ -52,3 +52,66 @@ export default tseslint.config({
   },
 })
 ```
+
+## Project Structure
+
+```
+/
+│
+├── public/                     # Archivos estáticos públicos
+│   └── favicon.ico
+│
+├── index.html                  # HTML entry point
+│
+├── src/
+│   ├── assets/                 # Imágenes, íconos, fuentes, etc.
+│   │   ├── images/
+│   │   └── styles/             # Archivos CSS/SCSS globales
+│   │       └── main.css
+│   │
+│   ├── components/             # Componentes reutilizables
+│   │   ├── Button.tsx
+│   │   └── Form.tsx
+│   │
+│   ├── features/               # Módulos principales del proyecto
+│   │   ├── Home/
+│   │   │   ├── Home.tsx
+│   │   │   └── Home.module.css
+│   │   └── OtherFeature/
+│   │       ├── OtherFeature.tsx
+│   │       └── OtherFeature.module.css
+│   │
+│   ├── data/                   # Datos mockeados
+│   │   ├── users.ts
+│   │   └── products.ts
+│   │
+│   ├── hooks/                  # Custom hooks
+│   │   └── useForm.ts
+│   │
+│   ├── utils/                  # Funciones utilitarias
+│   │   └── formatDate.ts
+│   │
+│   ├── App.tsx                 # Componente raíz
+│   ├── main.tsx               # Punto de entrada
+│   └── routes.tsx             # Definición de rutas (React Router)
+│
+├── .gitignore
+├── package.json
+├── README.md
+└── vite.config.js / webpack.config.js  # Dependiendo del bundler usado
+```
+
+### Estructura explicada
+
+- **public/**: Archivos estáticos públicos como imágenes y favicon
+- **index.html**: Punto de entrada HTML de la aplicación
+- **src/**: Código fuente de la aplicación
+  - **assets/**: Recursos estáticos (imágenes, estilos, etc.)
+  - **components/**: Componentes reutilizables TypeScript (.tsx)
+  - **features/**: Módulos principales, cada uno con sus componentes y estilos
+  - **data/**: Tipos y datos mockeados en TypeScript (.ts)
+  - **hooks/**: Custom hooks en TypeScript (.ts)
+  - **utils/**: Funciones utilitarias en TypeScript (.ts)
+  - **App.tsx**: Componente raíz con Router Setup
+  - **main.tsx**: Punto de entrada de la aplicación React
+  - **routes.tsx**: Configuración de React Router
