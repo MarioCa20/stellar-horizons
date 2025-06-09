@@ -115,3 +115,39 @@ export default tseslint.config({
   - **App.tsx**: Componente raíz con Router Setup
   - **main.tsx**: Punto de entrada de la aplicación React
   - **routes.tsx**: Configuración de React Router
+
+## Mock Data Structure
+
+The mock data (`src/data/mock_data.json`) represents a space tourism system with the following entities:
+
+### Core Entities
+- **users**: Usuarios del sistema con datos personales
+- **planets**: Planetas disponibles para turismo
+- **activities**: Tipos de actividades turísticas
+- **destinations**: Lugares específicos dentro de los planetas
+- **accommodations**: Alojamientos (hospedajes) disponibles en los destinos
+- **tours**: Paquetes turísticos organizados
+- **tour_destinations**: Relación entre tours y destinos
+- **bookings**: Reservas de tours o alojamientos
+- **reviews**: Reseñas de experiencias
+
+### Relaciones Principales
+- Destinos → Planetas y Actividades
+- Alojamientos → Destinos
+- Tours → Destinos (mediante tour_destinations)
+- Reservas → Usuario, Tour/Alojamiento
+- Reseñas → Reservas
+
+### Ejemplo de Uso
+```typescript
+interface Booking {
+  id: number;
+  userId: number;
+  tourId: number | null;
+  accommodationId: number | null;
+  date: string;
+  people: number;
+  paymentMethod: string;
+  status: string;
+}
+```

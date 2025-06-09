@@ -1,0 +1,230 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "María González",
+      "email": "maria@email.com",
+      "password": "encrypted_password"
+    },
+    {
+      "id": 2,
+      "name": "Juan Pérez",
+      "email": "juan@email.com",
+      "password": "encrypted_password"
+    }
+  ],
+  "planets": [
+    {
+      "id": 1,
+      "name": "Nueva Terra",
+      "population": "8.5 billones",
+      "language": "Español Intergaláctico",
+      "currency": "Créditos Estelares",
+      "image": "nueva_terra.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Azurita Prime",
+      "population": "3.2 billones",
+      "language": "Neo-Latín",
+      "currency": "Cristales Azules",
+      "image": "azurita.jpg"
+    }
+  ],
+  "activities": [
+    {
+      "id": 1,
+      "name": "Aventura Espacial",
+      "type": "Aventura",
+      "description": "Actividades de alto riesgo en el espacio"
+    },
+    {
+      "id": 2,
+      "name": "Turismo Cultural",
+      "type": "Cultural",
+      "description": "Exploración de culturas alienígenas"
+    }
+  ],
+  "destinations": [
+    {
+      "id": 1,
+      "name": "Ciudad Cristal",
+      "planetId": 1,
+      "activityId": 2,
+      "description": "Ciudad futurista con edificios de cristal",
+      "image": "ciudad_cristal.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Cañón Estelar",
+      "planetId": 2,
+      "activityId": 1,
+      "description": "Formación rocosa con vistas espectaculares",
+      "image": "canon_estelar.jpg"
+    }
+  ],
+  "accommodations": [
+    {
+      "id": 1,
+      "name": "Hotel Luna Nueva",
+      "destinationId": 1,
+      "price": 500,
+      "rooms": 200,
+      "image": "luna_nueva.jpg",
+      "description": "Hotel de lujo con vista a tres lunas"
+    },
+    {
+      "id": 2,
+      "name": "Posada Estelar",
+      "destinationId": 2,
+      "price": 300,
+      "rooms": 50,
+      "image": "posada_estelar.jpg",
+      "description": "Alojamiento tradicional con ambiente local"
+    }
+  ],
+  "tours": [
+    {
+      "id": 1,
+      "name": "Ruta de las Estrellas",
+      "description": "Tour por los mejores miradores estelares",
+      "duration": "3 días",
+      "price": 1500,
+      "availableSpots": 20
+    },
+    {
+      "id": 2,
+      "name": "Aventura Volcánica",
+      "description": "Exploración de volcanes activos",
+      "duration": "2 días",
+      "price": 2000,
+      "availableSpots": 15
+    }
+  ],
+  "tour_destinations": [
+    {
+      "id": 1,
+      "tourId": 1,
+      "destinationId": 1,
+      "visitDate": "2024-07-15"
+    },
+    {
+      "id": 2,
+      "tourId": 2,
+      "destinationId": 2,
+      "visitDate": "2024-08-20"
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "userId": 1,
+      "tourId": 1,
+      "accommodationId": null,
+      "date": "2025-03-15",
+      "people": 2,
+      "paymentMethod": "Crédito Estelar",
+      "status": "Confirmado"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "tourId": null,
+      "accommodationId": 1,
+      "date": "2025-04-01",
+      "people": 3,
+      "paymentMethod": "Cristales",
+      "status": "Pendiente"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "tourId": 2,
+      "accommodationId": null,
+      "date": "2025-05-20",
+      "people": 4,
+      "paymentMethod": "Crédito Estelar",
+      "status": "Confirmado"
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "tourId": 1,
+      "accommodationId": 2,
+      "date": "2025-06-15",
+      "people": 2,
+      "paymentMethod": "Cristales",
+      "status": "Cancelado"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "tourId": null,
+      "accommodationId": 2,
+      "date": "2025-07-10",
+      "people": 1,
+      "paymentMethod": "Crédito Estelar",
+      "status": "Pendiente"
+    },
+    {
+      "id": 6,
+      "userId": 2,
+      "tourId": 2,
+      "accommodationId": 1,
+      "date": "2025-08-22",
+      "people": 5,
+      "paymentMethod": "Cristales",
+      "status": "Confirmado"
+    },
+    {
+      "id": 7,
+      "userId": 1,
+      "tourId": 1,
+      "accommodationId": null,
+      "date": "2025-09-30",
+      "people": 3,
+      "paymentMethod": "Crédito Estelar",
+      "status": "Pendiente"
+    },
+    {
+      "id": 8,
+      "userId": 2,
+      "tourId": null,
+      "accommodationId": 2,
+      "date": "2025-10-15",
+      "people": 2,
+      "paymentMethod": "Cristales",
+      "status": "Confirmado"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "bookingId": 1,
+      "rating": 5,
+      "comment": "¡Experiencia inolvidable! Los paisajes son increíbles.",
+      "date": "2025-03-18"
+    },
+    {
+      "id": 2,
+      "bookingId": 2,
+      "rating": 4,
+      "comment": "Excelente servicio, pero el transporte podría mejorar.",
+      "date": "2025-04-05"
+    },
+    {
+      "id": 3,
+      "bookingId": 3,
+      "rating": 5,
+      "comment": "La aventura volcánica superó todas mis expectativas.",
+      "date": "2025-05-23"
+    },
+    {
+      "id": 4,
+      "bookingId": 6,
+      "rating": 4,
+      "comment": "Increíble tour familiar, muy recomendado.",
+      "date": "2025-08-25"
+    }
+  ]
+}

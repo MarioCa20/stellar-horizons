@@ -1,29 +1,40 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Home } from "./features/Home/Home";
+import { Booking } from "./features/Booking/Booking";
 import { Layout } from "./components/Layout/Layout";
+import { NotFound } from "./features/NotFound/NotFound";
 
 type BaseRoute = {
   path: string;
   element: React.ReactNode;
-  shouldWrap?: boolean;
+  children?: BaseRoute[];
 };
 
-const baseRoutes: BaseRoute[] = [
+// Routes that need the Layout wrapper
+const wrappedRoutes: BaseRoute[] = [
   {
-    path: "/",
+    path: "",
     element: <Home />,
-    shouldWrap: true,
+  },
+  {
+    path: "bookings",
+    element: <Booking />,
   },
 ];
 
-const routes = baseRoutes.map(({ shouldWrap, ...route }) => 
-  shouldWrap 
-    ? {
-        path: route.path,
-        element: <Layout />,
-        children: [{ ...route, path: "" }],
-      }
-    : route
-);
+// Main routes configuration
+const baseRoutes: BaseRoute[] = [
+  {
+    // Wrapped routes under Layout
+    path: "/",
+    element: <Layout />,
+    children: wrappedRoutes,
+  },
+  // Unwrapped routes
+  {
+    path: "*",
+    element: <NotFound />,
+  }
+];
 
-export const router = createBrowserRouter(routes);
+export const router = createBrowserRouter(baseRoutes);
