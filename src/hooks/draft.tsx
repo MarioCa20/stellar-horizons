@@ -1,1 +1,1 @@
-const example = 1
+// file for save the folder hooks

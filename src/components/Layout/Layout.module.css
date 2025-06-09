@@ -1,5 +1,8 @@
 .layout {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
 }
 
 .container {
@@ -9,5 +12,15 @@
 
 .main {
   flex: 1;
-  padding: 2rem;
+  padding-top: 56px; /* altura del navbar */
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

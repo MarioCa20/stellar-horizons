@@ -1,0 +1,71 @@
+.bookingContainer {
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .bookingContainer {
+    padding: 2rem;
+  }
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 250px;
+  z-index: 1050;
+}
+
+.bookingContainer h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.bookingContainer button {
+  margin-bottom: 1rem;
+}
+
+.bookingContainer .card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: none;
+}
+
+.bookingContainer .form-control,
+.bookingContainer .form-select {
+  border-radius: 6px;
+}
+
+.bookingContainer .table {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.bookingContainer .table th {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.bookingContainer .btn-outline-primary,
+.bookingContainer .btn-outline-danger {
+  padding: 0.25rem 0.5rem;
+}
+
+.tableResponsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+  .bookingContainer h2 {
+    font-size: 1.5rem;
+  }
+  
+  .tableResponsive {
+    font-size: 0.875rem;
+  }
+}
