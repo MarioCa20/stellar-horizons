@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    height: 80vh;
+    gap: 1.5rem;
+}
