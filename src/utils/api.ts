@@ -1,13 +1,13 @@
 import mockData from '../data/mock_data.json';
 
 // Types for our data structures
-interface User {
+export interface User {
   id: number;
   name: string;
   email: string;
 }
 
-interface Planet {
+export interface Planet {
   id: number;
   name: string;
   population: string;
@@ -16,14 +16,14 @@ interface Planet {
   image: string;
 }
 
-interface Activity {
+export interface Activity {
   id: number;
   name: string;
   type: string;
   description: string;
 }
 
-interface Destination {
+export interface Destination {
   id: number;
   name: string;
   planetId: number;
@@ -32,7 +32,7 @@ interface Destination {
   image: string;
 }
 
-interface Accommodation {
+export interface Accommodation {
   id: number;
   name: string;
   destinationId: number;
@@ -42,16 +42,17 @@ interface Accommodation {
   description: string;
 }
 
-interface Tour {
+export interface Tour {
   id: number;
   name: string;
   description: string;
   duration: string;
   price: number;
   availableSpots: number;
+  image: string;
 }
 
-interface Booking {
+export interface Booking {
   id: number;
   userId: number;
   tourId: number | null;
@@ -62,7 +63,7 @@ interface Booking {
   status: string;
 }
 
-interface Review {
+export interface Review {
   id: number;
   bookingId: number;
   rating: number;
