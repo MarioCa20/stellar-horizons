@@ -7,8 +7,9 @@ import { TourResultsByActivity } from "./features/SearchResult/TourResultsByActi
 import { AllTours } from "./features/SearchResult/AllTours";
 import { AccommodationResultsByPlanet } from "./features/SearchResult/AccommodationResultsByPlanet";
 import { AllAccommodations } from "./features/SearchResult/AllAccommodations";
-import { Login } from "./features/Login/Login";
 import { AuthGuard } from "./guards/AuthGuard";
+import { Login } from "./features/Auth/Login/Login";
+import { Register } from "./features/Auth/Register/Register";
 
 type BaseRoute = {
   path: string;
@@ -49,6 +50,10 @@ const wrappedRoutes: BaseRoute[] = [
   {
     path: "accommodations/all",
     element: <AllAccommodations />,
+  },
+  {
+    path: "register",
+    element: <Register />,
   },
 ];
 
