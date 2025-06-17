@@ -20,7 +20,7 @@
       "population": "8.5 billones",
       "language": "Español Intergaláctico",
       "currency": "Créditos Estelares",
-      "image": "nueva_terra.jpg"
+      "image": "nueva_tierra.jpg"
     },
     {
       "id": 2,
@@ -28,7 +28,31 @@
       "population": "3.2 billones",
       "language": "Neo-Latín",
       "currency": "Cristales Azules",
-      "image": "azurita.jpg"
+      "image": "azurita.jpeg"
+    },
+    {
+      "id": 3,
+      "name": "K-634",
+      "population": "1.1 billones",
+      "language": "Poli-Deutch",
+      "currency": "Kriptos",
+      "image": "k_planet.jpeg"
+    },
+    {
+      "id": 4,
+      "name": "Planeta Oscuro",
+      "population": "2.8 billones",
+      "language": "Neo-Latín",
+      "currency": "Pluts",
+      "image": "planeta_oscuro.jpeg"
+    },
+    {
+      "id": 5,
+      "name": "Deslumbro",
+      "population": "0.7 billones",
+      "language": "Plance",
+      "currency": "Pluts",
+      "image": "planeta_deslumbro.jpeg"
     }
   ],
   "activities": [
@@ -43,6 +67,12 @@
       "name": "Turismo Cultural",
       "type": "Cultural",
       "description": "Exploración de culturas alienígenas"
+    },
+    {
+      "id": 3,
+      "name": "Ocio",
+      "type": "Ocio",
+      "description": "Descanso y disfrute en la inmensidad del espacio"
     }
   ],
   "destinations": [
@@ -61,6 +91,38 @@
       "activityId": 1,
       "description": "Formación rocosa con vistas espectaculares",
       "image": "canon_estelar.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Ojo del Norte",
+      "planetId": 3,
+      "activityId": 1,
+      "description": "El lugar más helado del universo",
+      "image": "ojo_del_norte.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Agujero del ensueño",
+      "planetId": 4,
+      "activityId": 3,
+      "description": "Lugar destinado a viajar en el espacio tiempo",
+      "image": "agujero_ensueno.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Terminal intergalactica",
+      "planetId": 5,
+      "activityId": 2,
+      "description": "Espectacular ciudad con los trenes más rápidos de la galaxia",
+      "image": "tren_sur.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Casquete del deshielo",
+      "planetId": 4,
+      "activityId": 1,
+      "description": "Este lugar prontamente se convertirá en un mar helado ...",
+      "image": "casquete.jpg"
     }
   ],
   "accommodations": [
@@ -81,23 +143,61 @@
       "rooms": 50,
       "image": "posada_estelar.jpg",
       "description": "Alojamiento tradicional con ambiente local"
+    },
+    {
+      "id": 3,
+      "name": "Cavañas bajo Zero",
+      "destinationId": 3,
+      "price": 280,
+      "rooms": 40,
+      "image": "bajo_zero.jpg",
+      "description": "Acomodación en habitaciones submarinas"
+    },
+    {
+      "id": 3,
+      "name": "Motel intergalactico",
+      "destinationId": 5,
+      "price": 700,
+      "rooms": 80,
+      "image": "motel.jpg",
+      "description": "En las profundidades del espacio tambien hay lugar para el placer"
     }
   ],
   "tours": [
     {
       "id": 1,
       "name": "Ruta de las Estrellas",
-      "description": "Tour por los mejores miradores estelares",
+      "description": "Tour por los mejores miradores estelares de toda la galaxia",
       "duration": "3 días",
       "price": 1500,
+      "image": "ruta_estrellas.jpg",
       "availableSpots": 20
     },
     {
       "id": 2,
       "name": "Aventura Volcánica",
-      "description": "Exploración de volcanes activos",
+      "description": "Exploración de volcanes activos, una aventura a lo desconocido",
       "duration": "2 días",
       "price": 2000,
+      "image": "ruta_volcanica.jpeg",
+      "availableSpots": 15
+    },
+    {
+      "id": 3,
+      "name": "Agujeros en el tiempo",
+      "description": "Un recorrido entre agujeros negros que te hará recorrer todo el universo",
+      "duration": "5 días",
+      "price": 3200,
+      "image": "agujeros.jpg",
+      "availableSpots": 10
+    },
+    {
+      "id": 4,
+      "name": "Exploración polar",
+      "description": "Exploración a las profundidades más reconditas de los planetas polares",
+      "duration": "3 días",
+      "price": 1800,
+      "image": "polares.jpeg",
       "availableSpots": 15
     }
   ],
@@ -110,9 +210,21 @@
     },
     {
       "id": 2,
+      "tourId": 1,
+      "destinationId": 4,
+      "visitDate": "2024-07-16"
+    },
+    {
+      "id": 3,
       "tourId": 2,
-      "destinationId": 2,
-      "visitDate": "2024-08-20"
+      "destinationId": 3,
+      "visitDate": "2025-01-20"
+    },
+    {
+      "id": 4,
+      "tourId": 2,
+      "destinationId": 5,
+      "visitDate": "2025-01-22"
     }
   ],
   "bookings": [
