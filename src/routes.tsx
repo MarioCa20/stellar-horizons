@@ -3,8 +3,9 @@ import { Home } from "./features/Home/Home";
 import { Booking } from "./features/Booking/Booking";
 import { Layout } from "./components/Layout/Layout";
 import { NotFound } from "./features/NotFound/NotFound";
-import { Login } from "./features/Login/Login";
 import { AuthGuard } from "./guards/AuthGuard";
+import { Login } from "./features/Auth/Login/Login";
+import { Register } from "./features/Auth/Register/Register";
 
 type BaseRoute = {
   path: string;
@@ -29,6 +30,10 @@ const wrappedRoutes: BaseRoute[] = [
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "register",
+    element: <Register />,
   },
 ];
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./LoginForm.module.css";
+import { Button, Form } from "react-bootstrap";
 
 type FormProps = {
   onSubmit: (data: { email: string; password: string }) => void;
@@ -15,30 +16,30 @@ export const LoginForm = ({ onSubmit }: FormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div>
-        <input
-          className="form-control"
-          type="email"
+    <Form onSubmit={handleSubmit} className={styles.form}>
+      <Form.Group>
+        <Form.Control
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          type="email"
           placeholder="Correo"
           required
         />
-      </div>
-      <div>
-        <input
-          className="form-control"
-          type="password"
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Control
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          type="password"
           placeholder="Contraseña"
           required
         />
-      </div>
-      <button className="btn btn-secondary" type="submit">
+      </Form.Group>
+
+      <Button variant="secondary" type="submit">
         Ingresar
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 };
