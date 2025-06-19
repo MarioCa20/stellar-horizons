@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import * as api from '../../utils/api';
 import { Footer } from '../../components/Footer';
 import { TourSearch } from '../../components/TourSearch';
@@ -26,6 +26,14 @@ export const Home = () => {
             </Col>
           ))}
         </Row>
+        
+        <div className="my-5 p-4 text-center bg-light rounded shadow-sm">
+          <h3>🌌 ¡Descubre tu próximo destino interestelar!</h3>
+          <p className="lead">Viajes únicos, experiencias inigualables. Reserva hoy mismo.</p>
+          <Button variant="outline-primary" href="/tours/all">
+            Explorar todos los tours
+          </Button>
+        </div>
 
         <h3 className="mb-4">Alojamientos Recomendados</h3>
         <Row xs={1} sm={2} md={4} className="g-4">
@@ -35,6 +43,15 @@ export const Home = () => {
             </Col>
           ))}
         </Row>
+
+        <div className="my-5 p-4 text-center bg-light rounded shadow-sm">
+          <h3>🏨 Encuentra tu hogar en las estrellas</h3>
+          <p className="lead">Alojamientos únicos en los mejores planetas. Reserva ahora.</p>
+          <Button variant="outline-primary" href="/accommodations/all">
+            Ver todos los alojamientos
+          </Button>
+        </div>
+
       </Container>
       <Footer />
     </>
