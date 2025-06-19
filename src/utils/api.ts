@@ -71,6 +71,13 @@ export interface Review {
   date: string;
 }
 
+export interface DestinationTour {
+  id: number;
+  tourId: number;
+  destinationId: number;
+  visitDate: string;
+}
+
 /**
  * Mock API Service
  * 
@@ -103,6 +110,24 @@ export const getTourById = (id: number): Tour | undefined =>
 export const getBookingsByUserId = (userId: number): Booking[] =>
   mockData.bookings.filter(booking => booking.userId === userId);
 
+export const getToursByActivityId = (activityId: number): Tour[] => {
+  // 1. Encuentra destinos con esa actividad
+  const destinationIds = mockData.destinations
+    .filter(dest => dest.activityId === activityId)
+    .map(dest => dest.id);
+
+  // 2. Encuentra relaciones tour-destino con esos destinos
+  const tourIds = mockData.tour_destinations
+    .filter(dt => destinationIds.includes(dt.destinationId))
+    .map(dt => dt.tourId);
+
+  // 3. Elimina duplicados
+  const uniqueTourIds = Array.from(new Set(tourIds));
+
+  // 4. Devuelve los tours que coinciden
+  return mockData.tours.filter(tour => uniqueTourIds.includes(tour.id));
+};
+
 export const getReviewsByBookingId = (bookingId: number): Review | undefined =>
   mockData.reviews.find(review => review.bookingId === bookingId);
 
@@ -112,6 +137,12 @@ export const getDestinationsByPlanetId = (planetId: number): Destination[] =>
 export const getAccommodationsByDestinationId = (destinationId: number): Accommodation[] =>
   mockData.accommodations.filter(acc => acc.destinationId === destinationId);
 
+export const getAccommodationsByPlanetId = (planetId: number): Accommodation[] => {
+  const destinations = getDestinationsByPlanetId(planetId);
+  
+  // Usamos flatMap para combinar los resultados de múltiples destinos
+  return destinations.flatMap(dest => getAccommodationsByDestinationId(dest.id));
+};
 /**
  * DEVELOPER NOTE:
  * To add new methods, follow this pattern:
