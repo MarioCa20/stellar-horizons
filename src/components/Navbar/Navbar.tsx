@@ -1,6 +1,6 @@
 import { Nav, Navbar as BsNavbar, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { Home, Calendar, Map, Info, Phone } from 'lucide-react';
+import { Home, Calendar, Map, Info, LogIn, User} from 'lucide-react';
 import styles from './Navbar.module.css';
 
 export const Navbar = () => {
@@ -22,13 +22,17 @@ export const Navbar = () => {
               <Map size={18} />
               <span>Destinos</span>
             </Nav.Link>
+            <Nav.Link as={NavLink} to="/login" className="d-flex align-items-center gap-2">
+              <LogIn size={18} />
+              <span>Iniciar Sesion</span>
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/register" className="d-flex align-items-center gap-2">
+              <User size={18} />
+              <span>Registrarse</span>
+            </Nav.Link>
             <Nav.Link as={NavLink} to="/about" className="d-flex align-items-center gap-2">
               <Info size={18} />
               <span>Nosotros</span>
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/contact" className="d-flex align-items-center gap-2">
-              <Phone size={18} />
-              <span>Contacto</span>
             </Nav.Link>
           </Nav>
         </BsNavbar.Collapse>
