@@ -7,6 +7,7 @@ import { TourResultsByActivity } from "./features/SearchResult/TourResultsByActi
 import { AllTours } from "./features/SearchResult/AllTours";
 import { AccommodationResultsByPlanet } from "./features/SearchResult/AccommodationResultsByPlanet";
 import { AllAccommodations } from "./features/SearchResult/AllAccommodations";
+import { About } from "./features/About";
 
 type BaseRoute = {
   path: string;
@@ -39,6 +40,10 @@ const wrappedRoutes: BaseRoute[] = [
   {
     path: "accommodations/all",
     element: <AllAccommodations />,
+  },
+  {
+    path: "about",
+    element: <About />,
   },
 ];
 
