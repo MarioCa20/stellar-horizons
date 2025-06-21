@@ -1,6 +1,6 @@
 import { Nav, Navbar as BsNavbar, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { Home, Calendar, Map, Info, LogIn, User} from 'lucide-react';
+import { Home, Calendar, Map, Info, LogIn, User, Magnet} from 'lucide-react';
 import styles from './Navbar.module.css';
 
 export const Navbar = () => {
@@ -33,6 +33,14 @@ export const Navbar = () => {
             <Nav.Link as={NavLink} to="/about" className="d-flex align-items-center gap-2">
               <Info size={18} />
               <span>Nosotros</span>
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/Management/accommodations" className="d-flex align-items-center gap-2">
+              <Magnet size={18} />
+              <span>Alojamientos</span>
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/Management/tours" className="d-flex align-items-center gap-2">
+              <Magnet size={18} />
+              <span>Tours</span>
             </Nav.Link>
           </Nav>
         </BsNavbar.Collapse>

@@ -8,6 +8,8 @@ import { AllTours } from "./features/SearchResult/AllTours";
 import { AccommodationResultsByPlanet } from "./features/SearchResult/AccommodationResultsByPlanet";
 import { AllAccommodations } from "./features/SearchResult/AllAccommodations";
 import { About } from "./features/About";
+import { TourManagement } from "./features/Management/TourManagement";
+import { AccommodationManagement } from "./features/Management/AccommodationManagement";
 
 type BaseRoute = {
   path: string;
@@ -45,6 +47,14 @@ const wrappedRoutes: BaseRoute[] = [
     path: "about",
     element: <About />,
   },
+  {
+    path: "Management/tours",
+    element: <TourManagement />,
+  },
+  {
+    path: "Management/accommodations",
+    element: <AccommodationManagement />,
+  }
 ];
 
 // Main routes configuration
