@@ -73,6 +73,12 @@
       "name": "Ocio",
       "type": "Ocio",
       "description": "Descanso y disfrute en la inmensidad del espacio"
+    },
+    {
+      "id": 4,
+      "name": "Escaladas Glaciares",
+      "type": "Escalada",
+      "description": "Escale las montanas heladas de los planetas mas frios del universo"
     }
   ],
   "destinations": [
@@ -120,7 +126,7 @@
       "id": 6,
       "name": "Casquete del deshielo",
       "planetId": 4,
-      "activityId": 1,
+      "activityId": 4,
       "description": "Este lugar prontamente se convertirá en un mar helado ...",
       "image": "casquete.jpg"
     }
@@ -146,7 +152,7 @@
     },
     {
       "id": 3,
-      "name": "Cavañas bajo Zero",
+      "name": "Cabañas bajo Zero",
       "destinationId": 3,
       "price": 280,
       "rooms": 40,
@@ -154,7 +160,7 @@
       "description": "Acomodación en habitaciones submarinas"
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "Motel intergalactico",
       "destinationId": 5,
       "price": 700,
@@ -224,6 +230,18 @@
       "id": 4,
       "tourId": 2,
       "destinationId": 5,
+      "visitDate": "2025-01-22"
+    },
+    {
+      "id": 5,
+      "tourId": 3,
+      "destinationId": 4,
+      "visitDate": "2025-01-22"
+    },
+    {
+      "id": 6,
+      "tourId": 4,
+      "destinationId": 6,
       "visitDate": "2025-01-22"
     }
   ],
