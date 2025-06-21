@@ -6,7 +6,7 @@ interface Props {
   accommodations: Accommodation[];
 }
 
-export const AccommodationCardList = ({ accommodations }: Props) => {
+export const AccommodationResultCardList = ({ accommodations }: Props) => {
   const navigate = useNavigate();
 
   return (
@@ -16,6 +16,7 @@ export const AccommodationCardList = ({ accommodations }: Props) => {
           <Card className="h-100 shadow-sm border-0">
             <Card.Img
               variant="top"
+              style={{ height: '300px', objectFit: 'cover' }}
               src={`/images/${acc.image}`}
             />
             <Card.Body>
