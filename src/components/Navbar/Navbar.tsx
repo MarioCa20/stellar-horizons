@@ -34,14 +34,6 @@ export const Navbar = () => {
           <Nav className="ms-auto">
             <Nav.Link
               as={NavLink}
-              to="/bookings"
-              className="d-flex align-items-center gap-2"
-            >
-              <Calendar size={18} />
-              <span>Reservas</span>
-            </Nav.Link>
-            <Nav.Link
-              as={NavLink}
               to="/destinations"
               className="d-flex align-items-center gap-2"
             >
@@ -56,41 +48,62 @@ export const Navbar = () => {
               <Info size={18} />
               <span>Nosotros</span>
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/Management/accommodations" className="d-flex align-items-center gap-2">
-              <Magnet size={18} />
-              <span>Alojamientos</span>
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/Management/tours" className="d-flex align-items-center gap-2">
-              <Magnet size={18} />
-              <span>Tours</span>
-            </Nav.Link>
-            {isAuth ? (
-              <Nav.Link
-                onClick={handleLogout}
-                className="d-flex align-items-center gap-2"
-              >
-                <LogOut size={18} />
-                <span>Salir</span>
-              </Nav.Link>
-            ) : (
-              <Nav.Link
-                as={NavLink}
-                to="/login"
-                className="d-flex align-items-center gap-2"
-              >
-                <LogIn size={18} />
-                <span>Iniciar Sesión</span>
-              </Nav.Link>
+
+            {isAuth && (
+              <>
+                <Nav.Link
+                  as={NavLink}
+                  to="/bookings"
+                  className="d-flex align-items-center gap-2"
+                >
+                  <Calendar size={18} />
+                  <span>Reservas</span>
+                </Nav.Link>
+                <Nav.Link
+                  as={NavLink}
+                  to="/Management/accommodations"
+                  className="d-flex align-items-center gap-2"
+                >
+                  <Magnet size={18} />
+                  <span>Alojamientos</span>
+                </Nav.Link>
+                <Nav.Link
+                  as={NavLink}
+                  to="/Management/tours"
+                  className="d-flex align-items-center gap-2"
+                >
+                  <Magnet size={18} />
+                  <span>Tours</span>
+                </Nav.Link>
+                <Nav.Link
+                  onClick={handleLogout}
+                  className="d-flex align-items-center gap-2"
+                >
+                  <LogOut size={18} />
+                  <span>Salir</span>
+                </Nav.Link>
+              </>
             )}
+
             {!isAuth && (
-              <Nav.Link
-                as={NavLink}
-                to="/register"
-                className="d-flex align-items-center gap-2"
-              >
-                <User size={18} />
-                <span>Registrarse</span>
-              </Nav.Link>
+              <>
+                <Nav.Link
+                  as={NavLink}
+                  to="/login"
+                  className="d-flex align-items-center gap-2"
+                >
+                  <LogIn size={18} />
+                  <span>Iniciar Sesión</span>
+                </Nav.Link>
+                <Nav.Link
+                  as={NavLink}
+                  to="/register"
+                  className="d-flex align-items-center gap-2"
+                >
+                  <User size={18} />
+                  <span>Registrarse</span>
+                </Nav.Link>
+              </>
             )}
           </Nav>
         </BsNavbar.Collapse>
