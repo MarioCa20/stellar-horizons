@@ -1,4 +1,28 @@
-# React + TypeScript + Vite
+# Stellar Horizon
+Tras la derrota de la orden y el hallazgo de mapas estelares en los restos de la Estrella de la Muerte, surge la oportunidad de consolidar el turismo intergaláctico. Este proyecto propone el desarrollo de un portal web que articule agencias, viajeros y destinos, permitiendo organizar rutas a la velocidad de la luz, reservar experiencias guiadas y gestionar reseñas en mundos como Tatooine.
+Con la paz restaurada en la galaxia y los avances tecnológicos disponibles, se busca impulsar la economía y la cooperación interplanetaria mediante una plataforma centralizada que:
+
+
+## UI del home 
+![Texto alternativo](demo/home.png)
+
+## UI del home versión mobile
+![alt text](demo/home_mobile.png)
+
+## UI de reserva
+![Texto alternativo](demo/reserva.png)
+
+## UI de alojamientos
+![Texto alternativo](demo/alojamientos.png)
+
+## UI del login
+
+## UI detalle del tour
+
+## UI filtros de búsqueda
+
+
+## SetUp
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -7,7 +31,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Configuraciones ESLint
 
 If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
@@ -53,7 +77,7 @@ export default tseslint.config({
 })
 ```
 
-## Project Structure
+## Estructura del Proyecto
 
 ```
 /
@@ -116,11 +140,11 @@ export default tseslint.config({
   - **main.tsx**: Punto de entrada de la aplicación React
   - **routes.tsx**: Configuración de React Router
 
-## Mock Data Structure
+## Data mockeada
 
 The mock data (`src/data/mock_data.json`) represents a space tourism system with the following entities:
 
-### Core Entities
+### Entidades base
 - **users**: Usuarios del sistema con datos personales
 - **planets**: Planetas disponibles para turismo
 - **activities**: Tipos de actividades turísticas
