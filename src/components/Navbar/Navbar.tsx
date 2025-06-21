@@ -1,7 +1,7 @@
 import styles from "./Navbar.module.css";
 import { Nav, Navbar as BsNavbar, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { Home, Calendar, Map, Info, LogIn, User, LogOut } from "lucide-react";
+import { Home, Calendar, Map, Info, LogIn, User, LogOut, Magnet} from "lucide-react";
 import { isAuthenticated } from "../../hooks/useAuth";
 import { clearLocalStorage } from "../../utils/localStorage.utility";
 
@@ -55,6 +55,14 @@ export const Navbar = () => {
             >
               <Info size={18} />
               <span>Nosotros</span>
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/Management/accommodations" className="d-flex align-items-center gap-2">
+              <Magnet size={18} />
+              <span>Alojamientos</span>
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/Management/tours" className="d-flex align-items-center gap-2">
+              <Magnet size={18} />
+              <span>Tours</span>
             </Nav.Link>
             {isAuth ? (
               <Nav.Link

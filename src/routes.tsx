@@ -10,6 +10,9 @@ import { AllAccommodations } from "./features/SearchResult/AllAccommodations";
 import { AuthGuard } from "./guards/AuthGuard";
 import { Login } from "./features/Auth/Login/Login";
 import { Register } from "./features/Auth/Register/Register";
+import { About } from "./features/About";
+import { TourManagement } from "./features/Management/TourManagement";
+import { AccommodationManagement } from "./features/Management/AccommodationManagement";
 
 type BaseRoute = {
   path: string;
@@ -55,6 +58,18 @@ const wrappedRoutes: BaseRoute[] = [
     path: "register",
     element: <Register />,
   },
+  {
+    path: "about",
+    element: <About />,
+  },
+  {
+    path: "Management/tours",
+    element: <TourManagement />,
+  },
+  {
+    path: "Management/accommodations",
+    element: <AccommodationManagement />,
+  }
 ];
 
 // Main routes configuration
