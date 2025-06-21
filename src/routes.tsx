@@ -7,6 +7,8 @@ import { TourResultsByActivity } from "./features/SearchResult/TourResultsByActi
 import { AllTours } from "./features/SearchResult/AllTours";
 import { AccommodationResultsByPlanet } from "./features/SearchResult/AccommodationResultsByPlanet";
 import { AllAccommodations } from "./features/SearchResult/AllAccommodations";
+import { Login } from "./features/Login/Login";
+import { AuthGuard } from "./guards/AuthGuard";
 
 type BaseRoute = {
   path: string;
@@ -22,7 +24,15 @@ const wrappedRoutes: BaseRoute[] = [
   },
   {
     path: "bookings",
-    element: <Booking />,
+    element: (
+      <AuthGuard>
+        <Booking />
+      </AuthGuard>
+    ),
+  },
+  {
+    path: "login",
+    element: <Login />,
   },
   {
     path: "tours/activity/:activityId", // ruta dinamica para tours por actividad
@@ -54,7 +64,7 @@ const baseRoutes: BaseRoute[] = [
   {
     path: "*",
     element: <NotFound />,
-  }
+  },
 ];
 
 export const router = createBrowserRouter(baseRoutes);
