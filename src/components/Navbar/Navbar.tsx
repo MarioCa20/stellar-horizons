@@ -50,14 +50,6 @@ export const Navbar = () => {
             </Nav.Link>
             <Nav.Link
               as={NavLink}
-              to="/login"
-              className="d-flex align-items-center gap-2"
-            >
-              <LogIn size={18} />
-              <span>Iniciar Sesion</span>
-            </Nav.Link>
-            <Nav.Link
-              as={NavLink}
               to="/about"
               className="d-flex align-items-center gap-2"
             >
@@ -79,17 +71,19 @@ export const Navbar = () => {
                 className="d-flex align-items-center gap-2"
               >
                 <LogIn size={18} />
-                <span>Ingresar</span>
+                <span>Iniciar Sesión</span>
               </Nav.Link>
             )}
-            <Nav.Link
-              as={NavLink}
-              to="/register"
-              className="d-flex align-items-center gap-2"
-            >
-              <User size={18} />
-              <span>Registrarse</span>
-            </Nav.Link>
+            {!isAuth && (
+              <Nav.Link
+                as={NavLink}
+                to="/register"
+                className="d-flex align-items-center gap-2"
+              >
+                <User size={18} />
+                <span>Registrarse</span>
+              </Nav.Link>
+            )}
           </Nav>
         </BsNavbar.Collapse>
       </Container>
