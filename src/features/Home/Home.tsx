@@ -14,9 +14,15 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-      <Container className="my-5">
-        <TourSearch />
-        <AccommodationSearch/>
+        <Container className="my-5">
+          <Row className="mb-4">
+            <Col md={6}>
+              <TourSearch />
+            </Col>
+            <Col md={6}>
+              <AccommodationSearch />
+            </Col>
+        </Row>
 
         <h3 className="mb-4">Tours Recomendados</h3>
         <Row xs={1} sm={2} md={4} className="g-4">
