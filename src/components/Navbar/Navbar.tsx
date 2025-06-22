@@ -34,14 +34,6 @@ export const Navbar = () => {
           <Nav className="ms-auto">
             <Nav.Link
               as={NavLink}
-              to="/destinations"
-              className="d-flex align-items-center gap-2"
-            >
-              <Map size={18} />
-              <span>Destinos</span>
-            </Nav.Link>
-            <Nav.Link
-              as={NavLink}
               to="/about"
               className="d-flex align-items-center gap-2"
             >
