@@ -62,7 +62,7 @@ http://localhost:5173
 ![Texto alternativo](demo/Detalle.png)
 
 ## UI filtros de búsqueda
-![Texto alternativo](demo/Filtros de busqueda.png)
+![Texto alternativo](demo/Filtro.png)
 
 
 ## SetUp
