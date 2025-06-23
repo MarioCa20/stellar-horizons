@@ -42,7 +42,7 @@ export const TourDetails = () => {
                 <small className="text-muted">{tour?.duration}</small>
               </Card.Title>
               <div className="d-flex justify-content-end mt-3">
-                <Button variant="primary">Agregar</Button>
+                <Button variant="primary">Comprar</Button>
               </div>
             </Card.Body>
           </Card>
