@@ -44,22 +44,25 @@ http://localhost:5173
 
 
 ## UI del home 
-![Texto alternativo](demo/home.png)
+![Texto alternativo](demo/home1.png)
 
 ## UI del home versión mobile
 ![alt text](demo/home_mobile.png)
 
 ## UI de reserva
-![Texto alternativo](demo/reserva.png)
+![Texto alternativo](demo/Reserva.png)
 
 ## UI de alojamientos
-![Texto alternativo](demo/alojamientos.png)
+![Texto alternativo](demo/Alojamientos.png)
 
 ## UI del login
+![Texto alternativo](demo/Login.png)
 
 ## UI detalle del tour
+![Texto alternativo](demo/Detalle.png)
 
 ## UI filtros de búsqueda
+![Texto alternativo](demo/Filtrosdebusqueda.png)
 
 
 ## SetUp
