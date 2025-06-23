@@ -2,6 +2,43 @@
 Tras la derrota de la orden y el hallazgo de mapas estelares en los restos de la Estrella de la Muerte, surge la oportunidad de consolidar el turismo intergaláctico. Este proyecto propone el desarrollo de un portal web que articule agencias, viajeros y destinos, permitiendo organizar rutas a la velocidad de la luz, reservar experiencias guiadas y gestionar reseñas en mundos como Tatooine.
 Con la paz restaurada en la galaxia y los avances tecnológicos disponibles, se busca impulsar la economía y la cooperación interplanetaria mediante una plataforma centralizada que:
 
+##  Tecnologías Utilizadas
+
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Bootstrap 5](https://getbootstrap.com/)
+
+## Instalación y ejecución local
+
+### Requisitos previos
+
+- [Node.js y npm](https://nodejs.org/) instalados
+- [Git](https://git-scm.com/) instalado
+- [VS Code](https://code.visualstudio.com/) recomendado
+
+### Pasos para correr el proyecto localmente
+
+1. Clonar el repositorio
+
+```bash
+git clone https://github.com/MarioCa20/stellar-horizons.git
+cd stellar-horizons
+
+
+2. Instala las dependencias
+
+npm install
+
+3. Ejecuta el servidor de desarrollo
+
+npm run dev
+
+4.Abre el navegador
+
+El servidor estará corriendo en:
+http://localhost:5173
+
 
 ## UI del home 
 ![Texto alternativo](demo/home.png)
