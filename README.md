@@ -53,7 +53,7 @@ http://localhost:5173
 ![Texto alternativo](demo/Reserva.png)
 
 ## UI de alojamientos
-![Texto alternativo](demo/Alojamientos.png)
+![Texto alternativo](demo/Alojamiento.png)
 
 ## UI del login
 ![Texto alternativo](demo/Login.png)
@@ -62,7 +62,7 @@ http://localhost:5173
 ![Texto alternativo](demo/Detalle.png)
 
 ## UI filtros de búsqueda
-![Texto alternativo](demo/Filtrosdebusqueda.png)
+![Texto alternativo](demo/Filtros de busqueda.png)
 
 
 ## SetUp
