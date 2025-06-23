@@ -19,9 +19,9 @@ Con la paz restaurada en la galaxia y los avances tecnológicos disponibles, se 
 
 ### Pasos para correr el proyecto localmente
 
-1. Clonar el repositorio
+```1. Clonar el repositorio
 
-```bash
+bash
 git clone https://github.com/MarioCa20/stellar-horizons.git
 cd stellar-horizons
 
@@ -37,7 +37,7 @@ npm run dev
 4.Abre el navegador
 
 El servidor estará corriendo en:
-http://localhost:5173
+http://localhost:5173```
 
 
 ## UI del home 
