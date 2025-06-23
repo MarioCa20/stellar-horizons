@@ -139,7 +139,7 @@
       "price": 500,
       "rooms": 200,
       "image": "luna_nueva.jpg",
-      "description": "Hotel de lujo con vista a tres lunas"
+      "description": "Un lujoso refugio suspendido en el cielo de Ciudad Cristal, con vistas panorámicas a tres lunas que orbitan en sincronía. Sus habitaciones cuentan con control de gravedad ajustable, cristales de aislamiento emocional y servicio galáctico las 24 horas. Es el destino perfecto para parejas, soñadores y quienes desean reconectar con el cosmos desde la tranquilidad de una suite flotante."
     },
     {
       "id": 2,
@@ -148,7 +148,7 @@
       "price": 300,
       "rooms": 50,
       "image": "posada_estelar.jpg",
-      "description": "Alojamiento tradicional con ambiente local"
+      "description": "Una acogedora posada ubicada al borde del Cañón Estelar. Con una arquitectura tradicional que fusiona piedra cósmica y madera de meteorito, ofrece una experiencia cálida y auténtica. Las noches están ambientadas con narraciones de exploradores y comidas elaboradas con ingredientes locales. Ideal para viajeros curiosos que desean conectarse con la esencia del planeta."
     },
     {
       "id": 3,
@@ -157,7 +157,7 @@
       "price": 280,
       "rooms": 40,
       "image": "bajo_zero.jpg",
-      "description": "Acomodación en habitaciones submarinas"
+      "description": "Alojamiento inmersivo bajo el hielo en Ojo del Norte. Estas cabañas submarinas están equipadas con calefacción geotérmica, ventanales de hielo reforzado y ambientes personalizables que simulan auroras boreales. Un paraíso para quienes buscan privacidad, silencio absoluto y belleza polar inigualable."
     },
     {
       "id": 4,
@@ -166,14 +166,14 @@
       "price": 700,
       "rooms": 80,
       "image": "motel.jpg",
-      "description": "En las profundidades del espacio tambien hay lugar para el placer"
+      "description": "Ubicado en la Terminal Intergaláctica de Deslumbro, este motel ofrece una experiencia sensorial única para los amantes del placer y la extravagancia. Cada habitación está tematizada con culturas alienígenas extintas, iluminación sensorial adaptable y música ambiental sincronizada con las pulsaciones del huésped. Es el rincón secreto favorito de artistas, exploradores nocturnos y seres que buscan liberar su energía sin juicio."
     }
   ],
   "tours": [
     {
       "id": 1,
       "name": "Ruta de las Estrellas",
-      "description": "Tour por los mejores miradores estelares de toda la galaxia",
+      "description": "Una experiencia visual incomparable que recorre los miradores estelares más impresionantes de toda la galaxia. Durante este tour de 3 días, los viajeros tendrán acceso a plataformas flotantes situadas en puntos estratégicos del espacio, donde podrán observar supernovas, nebulosas y cúmulos estelares a través de visores panorámicos de última generación. Además de las vistas, se incluyen sesiones de meditación cósmica, talleres sobre navegación astral y charlas con astrónomos intergalácticos.",
       "duration": "3 días",
       "price": 1500,
       "image": "ruta_estrellas.jpg",
@@ -182,7 +182,7 @@
     {
       "id": 2,
       "name": "Aventura Volcánica",
-      "description": "Exploración de volcanes activos, una aventura a lo desconocido",
+      "description": "Una expedición intensa y electrizante hacia los volcanes activos más espectaculares del universo. Durante 2 días, los participantes explorarán cráteres humeantes, caminarán sobre ríos de lava solidificada y volarán en aeronaves ignífugas sobre explosiones volcánicas controladas. Este tour es ideal para espíritus aventureros, científicos y amantes de lo extremo.",
       "duration": "2 días",
       "price": 2000,
       "image": "ruta_volcanica.jpeg",
@@ -191,7 +191,7 @@
     {
       "id": 3,
       "name": "Agujeros en el tiempo",
-      "description": "Un recorrido entre agujeros negros que te hará recorrer todo el universo",
+      "description": "Un viaje revolucionario a través de agujeros negros estables que simulan travesías temporales entre distintas eras del cosmos. Durante los 5 días de esta travesía, los visitantes atravesarán zonas de distorsión temporal, presenciarán eventos cósmicos en reversa y aprenderán sobre los misterios del tiempo y el espacio. Incluye cápsulas de meditación temporal y debates filosóficos con expertos en cronodinámica.",
       "duration": "5 días",
       "price": 3200,
       "image": "agujeros.jpg",
@@ -200,7 +200,7 @@
     {
       "id": 4,
       "name": "Exploración polar",
-      "description": "Exploración a las profundidades más reconditas de los planetas polares",
+      "description": "Un tour de 3 días hacia las regiones polares más extremas y ocultas de los planetas helados. Los exploradores recorrerán campos de hielo centenario, descenderán a grietas subglaciares llenas de bioluminiscencia y participarán en excavaciones arqueológicas de civilizaciones antiguas congeladas en el tiempo. Ideal para quienes buscan aislamiento, introspección y paisajes inolvidables.",
       "duration": "3 días",
       "price": 1800,
       "image": "polares.jpeg",

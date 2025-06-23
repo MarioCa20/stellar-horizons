@@ -13,6 +13,8 @@ import { Register } from "./features/Auth/Register/Register";
 import { About } from "./features/About";
 import { TourManagement } from "./features/Management/TourManagement";
 import { AccommodationManagement } from "./features/Management/AccommodationManagement";
+import { TourDetails } from "./features/ToursDetails/TourDetails";
+import { AccommodationsDetails } from "./features/AccommodationsDetails/AccommodationsDetails";
 
 type BaseRoute = {
   path: string;
@@ -47,12 +49,20 @@ const wrappedRoutes: BaseRoute[] = [
     element: <AllTours />,
   },
   {
+    path: "tours/:tourId", // ruta dinamica para tour por id
+    element: <TourDetails />,
+  },
+  {
     path: "accommodations/planet/:planetId", // ruta dinamica para alojamiento por planeta
     element: <AccommodationResultsByPlanet />,
   },
   {
     path: "accommodations/all",
     element: <AllAccommodations />,
+  },
+  {
+    path: "accommodations/:accommodationId",
+    element: <AccommodationsDetails />,
   },
   {
     path: "register",
@@ -69,7 +79,7 @@ const wrappedRoutes: BaseRoute[] = [
   {
     path: "Management/accommodations",
     element: <AccommodationManagement />,
-  }
+  },
 ];
 
 // Main routes configuration
