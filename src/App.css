@@ -13,3 +13,10 @@
   -webkit-text-fill-color: transparent;
   margin-bottom: 1.5rem;
 }
+
+.line-clamp-3{
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
