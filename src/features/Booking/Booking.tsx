@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Table, Toast, Modal } from 'react-bootstrap';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import * as api from '../../utils/api';
 import { validateBookingForm } from '../../utils/validations/bookings';
 import type { BookingFormData } from '../../utils/validations/bookings';
 import styles from './Booking.module.css';
+import { useLocation } from 'react-router-dom';
 
 type FormErrors = Partial<Record<keyof BookingFormData, string>>;
 
@@ -25,6 +26,30 @@ export const Booking = () => {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [bookingType, setBookingType] = useState<'tour' | 'accommodation' | ''>('');
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      if (location.state.tourId) {
+        setBookingType('tour');
+        setFormData((prev) => ({
+          ...prev,
+          tourId: location.state.tourId,
+          accommodationId: null,
+        }));
+        setShowForm(true);
+      } else if (location.state.accommodationId) {
+        setBookingType('accommodation');
+        setFormData((prev) => ({
+          ...prev,
+          tourId: null,
+          accommodationId: location.state.accommodationId,
+        }));
+        setShowForm(true);
+      }
+    }
+    // eslint-disable-next-line
+  }, [location.state]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -127,7 +152,7 @@ export const Booking = () => {
     <Container fluid className={styles.bookingContainer}>
       <Row className="mb-4">
         <Col xs={12} className="d-flex justify-content-between align-items-center">
-          <h2>Gestión de Reservas</h2>
+          <h2 className="pt-4">Gestión de Reservas</h2>
           <Button 
             variant="primary" 
             onClick={() => setShowForm(true)}

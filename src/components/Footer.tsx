@@ -1,42 +1,31 @@
 import { Container, Row, Col } from 'react-bootstrap';
 
 export const Footer = () => (
-  <footer className="bg-light py-4 mt-5">
+  <footer className="bg-dark text-light py-4 mt-5">
     <Container>
-      <Row>
-        <Col md>
-          <h6>Account</h6>
-          <ul className="list-unstyled">
-            <li>My profile</li>
-            <li>My trips</li>
-            <li>Delete my account</li>
-          </ul>
+      <Row className="align-items-center">
+        <Col md={8}>
+          <h5>Stellar Horizons</h5>
+          <p className="mb-1">
+            Somos un equipo de desarrolladores apasionados creando experiencias únicas para tus viajes espaciales.
+          </p>
+          <p className="mb-0">
+            Contáctanos: equipo@stellarhorizons.com
+          </p>
         </Col>
-        <Col md>
-          <h6>We're Stellar Horizons</h6>
-          <ul className="list-unstyled">
-            <li>FAQs</li>
-            <li>Investor Relations</li>
-          </ul>
-        </Col>
-        <Col md>
-          <h6>Trust while buying</h6>
-          <ul className="list-unstyled">
-            <li>Terms and conditions</li>
-            <li>Privacy policy</li>
-            <li>Promotions</li>
-          </ul>
-        </Col>
-        <Col md>
-          <h6>List your property</h6>
-          <ul className="list-unstyled">
-            <li>Join your fleet</li>
-            <li>Premium Partner</li>
+        <Col md={3}>
+          <h6>Síguenos</h6>
+          <ul className="list-unstyled mb-0">
+            <li><a href="#" className="text-light text-decoration-none">Twitter</a></li>
+            <li><a href="#" className="text-light text-decoration-none">Instagram</a></li>
+            <li><a href="#" className="text-light text-decoration-none">Facebook</a></li>
           </ul>
         </Col>
       </Row>
-      <hr />
-      <p className="text-center text-muted small">Stellar Horizon 1999–2025. All rights reserved.</p>
+      <hr className="border-secondary" />
+      <p className="text-center small mb-0">
+        &copy; Stellar Horizons 2025. Todos los derechos reservados.
+      </p>
     </Container>
   </footer>
 );

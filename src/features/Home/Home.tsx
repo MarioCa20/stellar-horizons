@@ -6,10 +6,26 @@ import { AccommodationSearch } from '../../components/AccommodationSearch';
 import { TourCard } from '../../components/TourCard';
 import { AccommodationCard } from '../../components/AccommodationCard';
 import { Navbar } from '../../components/Navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
+import { isAuthenticated } from '../../hooks/useAuth';
 
 export const Home = () => {
   const tours = api.getTours().slice(0, 4); // 4 paquetes recomendados
   const alojamientos = api.getAccommodations().slice(0, 4); // 4 alojamientos recomendados
+  const navigate = useNavigate();
+  const isAuth = isAuthenticated();
+
+  const handleTourClick = (tourId: number) => {
+    if (isAuth) {
+      navigate('/bookings', { state: { tourId } });
+    }
+  };
+
+  const handleAccommodationClick = (accommodationId: number) => {
+    if (isAuth) {
+      navigate('/bookings', { state: { accommodationId } });
+    }
+  };
 
   return (
     <>
@@ -28,7 +44,15 @@ export const Home = () => {
         <Row xs={1} sm={2} md={4} className="g-4">
           {tours.map(tour => (
             <Col key={tour.id}>
-              <TourCard tour={tour} />
+              <div
+                style={isAuth ? { cursor: 'pointer' } : {}}
+                onClick={isAuth ? () => handleTourClick(tour.id) : undefined}
+                tabIndex={isAuth ? 0 : -1}
+                role={isAuth ? "button" : undefined}
+                aria-label={isAuth ? "Reservar este tour" : undefined}
+              >
+                <TourCard tour={tour} />
+              </div>
             </Col>
           ))}
         </Row>
@@ -45,7 +69,15 @@ export const Home = () => {
         <Row xs={1} sm={2} md={4} className="g-4">
           {alojamientos.map(alojamiento => (
             <Col key={alojamiento.id}>
-              <AccommodationCard accommodation={alojamiento} />
+              <div
+                style={isAuth ? { cursor: 'pointer' } : {}}
+                onClick={isAuth ? () => handleAccommodationClick(alojamiento.id) : undefined}
+                tabIndex={isAuth ? 0 : -1}
+                role={isAuth ? "button" : undefined}
+                aria-label={isAuth ? "Reservar este alojamiento" : undefined}
+              >
+                <AccommodationCard accommodation={alojamiento} />
+              </div>
             </Col>
           ))}
         </Row>
