@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import { Tour } from "../utils/api";
+import type { Tour } from "../utils/api";
 
 interface Props {
   tour: Tour;
@@ -35,7 +35,6 @@ export const TourCard = ({ tour }: Props) => (
           style={{
             fontSize: "0.9rem",
           }}
-          className="line-clamp-3"
         >
           {tour.description}
         </Card.Text>

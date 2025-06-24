@@ -1,6 +1,5 @@
 // Hook para filtrar y ordenar alojamientos
 import { useMemo } from "react";
-import { Accommodation } from "../utils/api";
 
 export function useFilteredAccommodations(accommodations, filters) {
   return useMemo(() => {

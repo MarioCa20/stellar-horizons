@@ -73,11 +73,11 @@ const wrappedRoutes: BaseRoute[] = [
     element: <About />,
   },
   {
-    path: "Management/tours",
+    path: "management/tours",
     element: <TourManagement />,
   },
   {
-    path: "Management/accommodations",
+    path: "management/accommodations",
     element: <AccommodationManagement />,
   },
 ];

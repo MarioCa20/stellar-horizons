@@ -48,7 +48,6 @@ export const Booking = () => {
         setShowForm(true);
       }
     }
-    // eslint-disable-next-line
   }, [location.state]);
 
   const handleSubmit = (e: React.FormEvent) => {
