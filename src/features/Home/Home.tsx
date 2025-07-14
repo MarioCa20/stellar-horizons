@@ -8,20 +8,29 @@ import { AccommodationCard } from '../../components/AccommodationCard';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
 import { isAuthenticated } from '../../hooks/useAuth';
+import { useEffect, useState } from 'react';
 
 export const Home = () => {
-  const tours = api.getTours().slice(0, 4); // 4 paquetes recomendados
-  const alojamientos = api.getAccommodations().slice(0, 4); // 4 alojamientos recomendados
+  const [tours, setTours] = useState([]);
+  const [alojamientos, setAlojamientos] = useState([]);
   const navigate = useNavigate();
   const isAuth = isAuthenticated();
 
-  const handleTourClick = (tourId: number) => {
+  useEffect(() => {
+    api.getTours().then(data => setTours(Array.isArray(data) ? data : []));
+    api.getAccommodations().then(data => setAlojamientos(Array.isArray(data) ? data : []));
+  }, []);
+
+  const featuredTours = Array.isArray(tours) ? tours.slice(0, 4) : [];
+  const featuredAlojamientos = Array.isArray(alojamientos) ? alojamientos.slice(0, 4) : [];
+
+  const handleTourClick = (tourId) => {
     if (isAuth) {
       navigate('/bookings', { state: { tourId } });
     }
   };
 
-  const handleAccommodationClick = (accommodationId: number) => {
+  const handleAccommodationClick = (accommodationId) => {
     if (isAuth) {
       navigate('/bookings', { state: { accommodationId } });
     }
@@ -42,7 +51,7 @@ export const Home = () => {
 
         <h3 className="mb-4">Tours Recomendados</h3>
         <Row xs={1} sm={2} md={4} className="g-4">
-          {tours.map(tour => (
+          {featuredTours.map(tour => (
             <Col key={tour.id}>
               <div
                 style={isAuth ? { cursor: 'pointer' } : {}}
@@ -67,7 +76,7 @@ export const Home = () => {
 
         <h3 className="mb-4">Alojamientos Recomendados</h3>
         <Row xs={1} sm={2} md={4} className="g-4">
-          {alojamientos.map(alojamiento => (
+          {featuredAlojamientos.map(alojamiento => (
             <Col key={alojamiento.id}>
               <div
                 style={isAuth ? { cursor: 'pointer' } : {}}

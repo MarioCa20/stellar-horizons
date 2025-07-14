@@ -17,7 +17,7 @@ export const TourCard = ({ tour }: Props) => (
   >
     <Card.Img
       variant="top"
-      src={`/images/${tour.image}`}
+      src={tour.image}
       alt={tour.name}
       style={{ height: "180px", objectFit: "cover" }}
     />

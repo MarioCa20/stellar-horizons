@@ -14,7 +14,7 @@ export const TourResultCardList = ({ tours }: Props) => {
             <Card.Img
               variant="top"
               style={{ height: "300px", objectFit: "cover" }}
-              src={`/images/${tour.image}`}
+              src={tour.image}
             />
             <Card.Body>
               <Card.Title>{tour.name}</Card.Title>

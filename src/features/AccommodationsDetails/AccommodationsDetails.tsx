@@ -19,7 +19,7 @@ export const AccommodationsDetails = () => {
           <Card>
             <Card.Img
               variant="top"
-              src={`/images/${accommdation?.image}`}
+              src={accommdation?.image}
               style={{ height: "50vh", objectFit: "cover" }}
             ></Card.Img>
             <Card.Body>

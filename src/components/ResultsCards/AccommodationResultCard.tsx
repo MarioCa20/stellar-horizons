@@ -14,7 +14,7 @@ export const AccommodationResultCardList = ({ accommodations }: Props) => {
             <Card.Img
               variant="top"
               style={{ height: "300px", objectFit: "cover" }}
-              src={`/images/${acc.image}`}
+              src={acc.image}
             />
             <Card.Body>
               <Card.Title>{acc.name}</Card.Title>

@@ -1,7 +1,6 @@
 // useTourFilters.ts
 import { useMemo } from "react";
-import { type Tour } from "../utils/api";
-import mockData from "../data/mock_data.json";
+import { type Tour, getToursByActivityId } from "../utils/api";
 
 interface UseTourFiltersParams {
   tours: Tour[];
@@ -28,16 +27,10 @@ export const useTourFilters = ({
 
     // Filtrar por actividad
     if (activityId != null) {
-      const destinationIdsWithActivity = mockData.destinations
-        .filter((dest) => dest.activityId === activityId)
-        .map((dest) => dest.id);
-
-      const tourIdsWithActivity = mockData.tour_destinations
-        .filter((td) => destinationIdsWithActivity.includes(td.destinationId))
-        .map((td) => td.tourId);
-
+      // Usar api.ts en vez de mockData
+      const toursWithActivity = getToursByActivityId(activityId);
+      const tourIdsWithActivity = toursWithActivity.map((tour) => tour.id);
       const uniqueTourIds = Array.from(new Set(tourIdsWithActivity));
-
       filtered = filtered.filter((tour) => uniqueTourIds.includes(tour.id));
     }
 
