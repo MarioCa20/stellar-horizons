@@ -19,7 +19,7 @@ export const TourDetails = () => {
           <Card>
             <Card.Img
               variant="top"
-              src={`/images/${tour?.image}`}
+              src={tour?.image}
               style={{ height: "50vh", objectFit: "cover" }}
             ></Card.Img>
             <Card.Body>
