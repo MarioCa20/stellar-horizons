@@ -31,7 +31,7 @@ export const AccommodationCard = ({ accommodation }: Props) => (
     >
       <div>
         <Card.Title>{accommodation.name}</Card.Title>
-        <Card.Text style={{ fontSize: "0.9rem" }} className="line-clamp-3">
+        <Card.Text className="line-clamp" style={{ fontSize: "0.9rem" }}>
           {accommodation.description}
         </Card.Text>
       </div>

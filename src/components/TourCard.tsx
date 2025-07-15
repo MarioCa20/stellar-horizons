@@ -32,6 +32,7 @@ export const TourCard = ({ tour }: Props) => (
       <div>
         <Card.Title>{tour.name}</Card.Title>
         <Card.Text
+          className="line-clamp"
           style={{
             fontSize: "0.9rem",
           }}
