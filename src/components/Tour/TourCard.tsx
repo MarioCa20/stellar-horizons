@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import type { Tour } from "../utils/api";
+import type { Tour } from "../../utils/api";
 
 interface Props {
   tour: Tour;

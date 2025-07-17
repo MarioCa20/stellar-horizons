@@ -1,6 +1,6 @@
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { type Activity, getActivities } from '../utils/api';
+import { type Activity, getActivities } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 
 export const TourSearch = () => {

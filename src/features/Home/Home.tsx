@@ -1,10 +1,10 @@
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import * as api from '../../utils/api';
 import { Footer } from '../../components/Footer';
-import { TourSearch } from '../../components/TourSearch';
-import { AccommodationSearch } from '../../components/AccommodationSearch';
-import { TourCard } from '../../components/TourCard';
-import { AccommodationCard } from '../../components/AccommodationCard';
+import { TourSearch } from '../../components/Tour/TourSearch';
+import { AccommodationSearch } from '../../components/Accommodation/AccommodationSearch';
+import { TourCard } from '../../components/Tour/TourCard';
+import { AccommodationCard } from '../../components/Accommodation/AccommodationCard';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
 import { isAuthenticated } from '../../hooks/useAuth';

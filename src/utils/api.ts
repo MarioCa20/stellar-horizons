@@ -90,7 +90,7 @@ export interface DestinationTour {
  */
 
 // Basic GET methods for each entity
-export const getUses = (): User[] => mockData.users;
+export const getUsers = (): User[] => mockData.users;
 export const getPlanets = (): Planet[] => mockData.planets;
 export const getActivities = (): Activity[] => mockData.activities;
 export const getDestinations = (): Destination[] => mockData.destinations;

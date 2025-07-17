@@ -1,6 +1,6 @@
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { getPlanets, type Planet } from '../utils/api';
+import { getPlanets, type Planet } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 
 export const AccommodationSearch = () => {
