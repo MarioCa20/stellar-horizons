@@ -8,9 +8,9 @@ export const AccommodationSearch = () => {
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setPlanets(getPlanets());
-  }, []);
+ useEffect(() => {
+     getPlanets().then(setPlanets);
+   }, []);
 
   const handleSearchClick = () => {
     if (selectedPlanet !== null) {

@@ -9,7 +9,7 @@ export const TourSearch = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setActivities(getActivities());
+    getActivities().then(setActivities);
   }, []);
 
   const handleSearchClick = () => {
