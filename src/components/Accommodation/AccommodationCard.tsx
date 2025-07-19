@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import { type Accommodation } from "../utils/api";
+import { type Accommodation } from "../../utils/api";
 
 interface Props {
   accommodation: Accommodation;

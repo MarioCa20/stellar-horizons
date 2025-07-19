@@ -57,6 +57,24 @@ export const Navbar = () => {
               <Info size={18} />
               <span>Nosotros</span>
             </Nav.Link>
+            <Nav.Link
+                  as={NavLink}
+                  to="accommodations/all"
+                  className="d-flex align-items-center gap-2 py-2 px-3"
+                  onClick={() => setExpanded(false)}
+                >
+                  <BedDouble size={18} />
+                  <span>Alojamientos</span>
+                </Nav.Link>
+             <Nav.Link
+                  as={NavLink}
+                  to="tours/all"
+                  className="d-flex align-items-center gap-2 py-2 px-3"
+                  onClick={() => setExpanded(false)}
+                >
+                  <Plane size={18} />
+                  <span>Tours</span>
+                </Nav.Link>
 
             {isAuth && (
               <>
@@ -76,7 +94,7 @@ export const Navbar = () => {
                   onClick={() => setExpanded(false)}
                 >
                   <BedDouble size={18} />
-                  <span>Alojamientos</span>
+                  <span>Alojamientos CRUD</span>
                 </Nav.Link>
                 <Nav.Link
                   as={NavLink}
@@ -85,7 +103,7 @@ export const Navbar = () => {
                   onClick={() => setExpanded(false)}
                 >
                   <Plane size={18} />
-                  <span>Tours</span>
+                  <span>Tours CRUD</span>
                 </Nav.Link>
                 <Nav.Link
                   onClick={handleLogout}

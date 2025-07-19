@@ -1,18 +1,11 @@
-import { useState } from "react";
-import { getAccommodations, getDestinations } from "../../utils/api";
+import { useState, useEffect } from "react";
+import { getDestinations, getFilteredAccommodations, type Accommodation, type Destination} from "../../utils/api";
 import { AccommodationResultCardList } from "../../components/ResultsCards/AccommodationResultCard";
-import { useFilteredAccommodations } from "../../hooks/useAccommodationFilters";
 import { AccommodationFilters } from "../../components/Filters/AccommodationFilters";
 
-/**
- * Componente para mostrar todos los alojamientos disponibles.
- * Utiliza la función getAccommodations para obtener la lista de alojamientos.
- * Muestra un mensaje si no hay alojamientos disponibles.
- */
-
 export const AllAccommodations = () => {
-  const allAccommodations = getAccommodations();
-  const destinations = getDestinations();
+  const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
+  const [destinations, setDestinations] = useState<Destination[]>([]);
 
   const [filters, setFilters] = useState<{
     destinationId: number | null;
@@ -24,7 +17,26 @@ export const AllAccommodations = () => {
     sortOrder: null,
   });
 
-  const filtered = useFilteredAccommodations(allAccommodations, filters);
+  // Cargar destinos una sola vez
+  useEffect(() => {
+    getDestinations().then(setDestinations);
+  }, []);
+
+  // Cargar alojamientos al cambiar filtros
+  useEffect(() => {
+    getFilteredAccommodations({
+      planet: filters.destinationId ?? null,
+      max_price: filters.maxPrice ?? null,
+    }).then((results) => {
+      let sorted = [...results];
+      if (filters.sortOrder === "asc") {
+        sorted.sort((a, b) => a.price - b.price);
+      } else if (filters.sortOrder === "desc") {
+        sorted.sort((a, b) => b.price - a.price);
+      }
+      setAccommodations(sorted);
+    });
+  }, [filters]);
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -36,10 +48,10 @@ export const AllAccommodations = () => {
         destinations={destinations}
       />
 
-      {filtered.length === 0 ? (
-        <p>No hay alojamientos disponibles con los filtros aplicados.</p>
+      {accommodations.length === 0 ? (
+        <p>No hay alojamientos disponibles con los filtros seleccionados.</p>
       ) : (
-        <AccommodationResultCardList accommodations={filtered} />
+        <AccommodationResultCardList accommodations={accommodations} />
       )}
     </div>
   );

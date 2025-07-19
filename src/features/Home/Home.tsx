@@ -1,18 +1,18 @@
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import * as api from '../../utils/api';
 import { Footer } from '../../components/Footer';
-import { TourSearch } from '../../components/TourSearch';
-import { AccommodationSearch } from '../../components/AccommodationSearch';
-import { TourCard } from '../../components/TourCard';
-import { AccommodationCard } from '../../components/AccommodationCard';
+import { TourSearch } from '../../components/Tour/TourSearch';
+import { AccommodationSearch } from '../../components/Accommodation/AccommodationSearch';
+import { TourCard } from '../../components/Tour/TourCard';
+import { AccommodationCard } from '../../components/Accommodation/AccommodationCard';
 import { Navbar } from '../../components/Navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
 import { isAuthenticated } from '../../hooks/useAuth';
 import { useEffect, useState } from 'react';
 
 export const Home = () => {
-  const [tours, setTours] = useState([]);
-  const [alojamientos, setAlojamientos] = useState([]);
+  const [tours, setTours] = useState<api.Tour[]>([]);
+  const [alojamientos, setAlojamientos] = useState<api.Accommodation[]>([]);
   const navigate = useNavigate();
   const isAuth = isAuthenticated();
 
@@ -24,13 +24,13 @@ export const Home = () => {
   const featuredTours = Array.isArray(tours) ? tours.slice(0, 4) : [];
   const featuredAlojamientos = Array.isArray(alojamientos) ? alojamientos.slice(0, 4) : [];
 
-  const handleTourClick = (tourId) => {
+  const handleTourClick = (tourId: number) => {
     if (isAuth) {
       navigate('/bookings', { state: { tourId } });
     }
   };
 
-  const handleAccommodationClick = (accommodationId) => {
+  const handleAccommodationClick = (accommodationId: number) => {
     if (isAuth) {
       navigate('/bookings', { state: { accommodationId } });
     }

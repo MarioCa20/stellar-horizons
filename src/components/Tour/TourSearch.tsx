@@ -1,6 +1,6 @@
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { type Activity, getActivities } from '../utils/api';
+import { type Activity, getActivities } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 
 export const TourSearch = () => {
@@ -9,7 +9,7 @@ export const TourSearch = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setActivities(getActivities());
+    getActivities().then(setActivities);
   }, []);
 
   const handleSearchClick = () => {

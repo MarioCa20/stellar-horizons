@@ -1,6 +1,6 @@
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { getPlanets, type Planet } from '../utils/api';
+import { getPlanets, type Planet } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 
 export const AccommodationSearch = () => {
@@ -8,9 +8,9 @@ export const AccommodationSearch = () => {
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setPlanets(getPlanets());
-  }, []);
+ useEffect(() => {
+     getPlanets().then(setPlanets);
+   }, []);
 
   const handleSearchClick = () => {
     if (selectedPlanet !== null) {
