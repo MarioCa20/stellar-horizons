@@ -4,9 +4,10 @@ import { Button, Form } from "react-bootstrap";
 
 type FormProps = {
   onSubmit: (data: { email: string; password: string }) => void;
+  loading?: boolean;
 };
 
-export const LoginForm = ({ onSubmit }: FormProps) => {
+export const LoginForm = ({ onSubmit, loading = false }: FormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -38,7 +39,7 @@ export const LoginForm = ({ onSubmit }: FormProps) => {
       </Form.Group>
 
       <Button variant="secondary" type="submit">
-        Ingresar
+        {loading ? "Cargando..." : "Ingresar"}
       </Button>
     </Form>
   );
