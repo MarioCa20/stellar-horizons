@@ -1,20 +1,20 @@
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import * as api from '../../utils/api';
-import { Footer } from '../../components/Footer';
-import { TourSearch } from '../../components/Tour/TourSearch';
-import { AccommodationSearch } from '../../components/Accommodation/AccommodationSearch';
-import { TourCard } from '../../components/Tour/TourCard';
-import { AccommodationCard } from '../../components/Accommodation/AccommodationCard';
-import { Navbar } from '../../components/Navbar/Navbar';
-import { useNavigate } from 'react-router-dom';
-import { isAuthenticated } from '../../hooks/useAuth';
 import { useEffect, useState } from 'react';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { AccommodationCard } from '../../components/Accommodation/AccommodationCard';
+import { AccommodationSearch } from '../../components/Accommodation/AccommodationSearch';
+import { Footer } from '../../components/Footer';
+import { Navbar } from '../../components/Navbar/Navbar';
+import { TourCard } from '../../components/Tour/TourCard';
+import { TourSearch } from '../../components/Tour/TourSearch';
+import { useAuth } from '../../hooks/useAuth';
+import * as api from '../../utils/api';
 
 export const Home = () => {
   const [tours, setTours] = useState<api.Tour[]>([]);
   const [alojamientos, setAlojamientos] = useState<api.Accommodation[]>([]);
   const navigate = useNavigate();
-  const isAuth = isAuthenticated();
+  const isAuth = useAuth();
 
   useEffect(() => {
     api.getTours().then(data => setTours(Array.isArray(data) ? data : []));
