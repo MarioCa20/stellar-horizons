@@ -1,13 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterForm } from "../../../components/Register/RegisterForm";
-import { persistLocalStorage } from "../../../utils/localStorage.utility";
 import styles from "./Register.module.css";
 
 export const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    persistLocalStorage("auth", true);
+    
     navigate("/");
     window.location.reload();
   };

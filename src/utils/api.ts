@@ -2,6 +2,7 @@ import mockData from "../data/mock_data.json";
 
 // URL base de la API
 export const API_BASE_URL = "http://127.0.0.1:8000/api/v1/";
+export const API_AUTH_BASE_URL = "http://127.0.0.1:8000/api-auth/";
 
 // Types for our data structures
 export interface User {
@@ -81,6 +82,11 @@ export interface TourDestination {
   visitDate: string;
 }
 
+export interface AuthResponse {
+  access: string;
+  refresh: string;
+}
+
 /**
  * Mock API Service
  *
@@ -89,10 +95,39 @@ export interface TourDestination {
  * Example: getBookingsByUserId, getToursByDestination, etc.
  */
 
-export const getUsers = (): User[] => mockData.users; //por cambiar a API
+export const login = async (email: string, password: string): Promise<AuthResponse> => {
+  const response = await fetch(`${API_AUTH_BASE_URL}login/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Error al iniciar sesión');
+  }
+
+  return response.json();
+};
+
+export const getUsers = async (): Promise<User[]> => {
+  const res = await fetch(`${API_BASE_URL}users/`);
+  if (!res.ok) return [];
+  const data = await res.json();
+  return data.results ?? [];
+};
+
 export const getReviews = (): Review[] => mockData.reviews; // por cambiar a API
-export const getUserById = (id: number): User | undefined =>
-  mockData.users.find((user) => user.id === id); // por cambiar a API
+
+export const getUserById = async (id: number): Promise<User | undefined> => {
+  const res = await fetch(`${API_BASE_URL}users/${id}/`);
+  if (!res.ok) return undefined;
+  const data = await res.json();
+  return data;
+};
 
 export const getPlanets = async (): Promise<Planet[]> => {
   const res = await fetch(`${API_BASE_URL}planets/`);
