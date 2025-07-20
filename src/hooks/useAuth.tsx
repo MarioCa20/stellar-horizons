@@ -1,3 +1,5 @@
-export const isAuthenticated = (): boolean => {
-  return localStorage.getItem("auth") === "true";
+import { useAppSelector } from "./useStore";
+
+export const useAuth = (): boolean => {
+  return useAppSelector((state) => state.auth.isAuthenticated);
 };
