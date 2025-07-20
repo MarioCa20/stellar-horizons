@@ -4,7 +4,7 @@ export const persistLocalStorage = <T,>(key: string, value: T): void => {
 
 const AUTH_KEY = 'auth';
 
-export const loadAuthState = () => {
+export const loadAuthStateFromLocalStorage = () => {
   try {
     const serialized = localStorage.getItem(AUTH_KEY);
     if (!serialized) return undefined;
@@ -14,13 +14,13 @@ export const loadAuthState = () => {
   }
 };
 
-export const saveAuthState = (state: unknown) => {
+export const saveAuthStateLocalStorage = (state: unknown) => {
   try {
     localStorage.setItem(AUTH_KEY, JSON.stringify(state));
   } catch {}
 };
 
-export const clearAuthState = () => {
+export const clearAuthStateLocalStorage = () => {
   try {
     localStorage.removeItem(AUTH_KEY);
   } catch {}
