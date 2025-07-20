@@ -1,22 +1,24 @@
-import styles from "./Navbar.module.css";
-import { Nav, Navbar as BsNavbar, Container } from "react-bootstrap";
+import { BedDouble, Calendar, Home, Info, LogIn, LogOut, Plane, Users } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Navbar as BsNavbar, Container, Nav } from "react-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
-import { Home, Calendar, BedDouble, Info, LogIn, LogOut, Plane, Users } from "lucide-react";
-import { isAuthenticated } from "../../hooks/useAuth";
-import { clearLocalStorage } from "../../utils/localStorage.utility";
-import { useState, useEffect } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import { useAppDispatch } from "../../hooks/useStore";
+import { logout } from "../../redux/states/authSlice";
+import styles from "./Navbar.module.css";
 
 export const Navbar = () => {
-  const isAuth = isAuthenticated();
+  const isAuth = useAuth();
   const [expanded, setExpanded] = useState(false);
   const location = useLocation();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setExpanded(false); // Cierra el menú al cambiar de ruta
   }, [location]);
 
   const handleLogout = () => {
-    clearLocalStorage("auth");
+    dispatch(logout())
     window.location.reload();
   };
 
