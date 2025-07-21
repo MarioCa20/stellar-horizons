@@ -48,7 +48,7 @@ export const RegisterForm = ({ onSubmit, loading = false }: FormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!passwordError && !passwordMatchError && !nitError) {
-      onSubmit({ name, email, password, nit: parseInt(nit, 10) });
+      onSubmit({ name, email, password, nit});
     }
   };
 
