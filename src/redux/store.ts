@@ -17,7 +17,9 @@ export const store = configureStore({
 // Persistir cambios en el estado de auth en localStorage
 store.subscribe(() => {
     const { auth } = store.getState();
-    saveAuthStateLocalStorage(auth);
+    if (auth.isAuthenticated) {
+        saveAuthStateLocalStorage(auth);
+    }
 });
 
 // Tipos del store para usar en hooks

@@ -1,9 +1,9 @@
-.container{
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column;
-    height: 80vh;
+    height: 90vh;
     gap: 1.5rem;
 }
 
@@ -19,4 +19,12 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 40vw;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    min-width: 250px;
+    z-index: 1050;
 }
