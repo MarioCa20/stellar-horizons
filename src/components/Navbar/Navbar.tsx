@@ -61,7 +61,7 @@ export const Navbar = () => {
             </Nav.Link>
             <Nav.Link
                   as={NavLink}
-                  to="accommodations/all"
+                  to="/accommodations/all"
                   className="d-flex align-items-center gap-2 py-2 px-3"
                   onClick={() => setExpanded(false)}
                 >
@@ -70,7 +70,7 @@ export const Navbar = () => {
                 </Nav.Link>
              <Nav.Link
                   as={NavLink}
-                  to="tours/all"
+                  to="/tours/all"
                   className="d-flex align-items-center gap-2 py-2 px-3"
                   onClick={() => setExpanded(false)}
                 >
