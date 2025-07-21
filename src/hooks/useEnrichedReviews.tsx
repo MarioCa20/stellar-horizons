@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import {
   getBookings,
   getReviews,
@@ -16,25 +16,37 @@ export interface EnrichedReview {
 }
 
 export const useEnrichedReviews = (): EnrichedReview[] => {
-  const reviews = getReviews();
-  const bookings = getBookings();
+  const [enrichedReviews, setEnrichedReviews] = useState<EnrichedReview[]>([]);
 
-  const enrichedReviews = useMemo(() => {
-    return reviews.map((review) => {
-      const booking = bookings.find((b) => b.id === review.bookingId);
-      const user = booking ? getUserById(booking.userId) : undefined;
-      const tour = booking?.tourId ? getTourById(booking.tourId) : null;
+  useEffect(() => {
+    const loadData = async () => {
+      const reviews = await getReviews();
+      const bookings = await getBookings();
 
-      return {
-        id: review.id,
-        rating: review.rating,
-        comment: review.comment,
-        date: review.date,
-        userName: user?.name ?? "Anónimo",
-        tourName: tour?.name ?? "Alojamiento",
-      };
-    });
-  }, [reviews, bookings]);
+      const enriched = await Promise.all(
+        reviews.map(async (review) => {
+          const booking = bookings.find((b) => b.id === review.bookingId);
+          const user = booking ? await getUserById(booking.userId) : undefined;
+          const tour = booking?.tourId
+            ? await getTourById(booking.tourId)
+            : null;
+
+          return {
+            id: review.id,
+            rating: review.rating,
+            comment: review.comment,
+            date: review.date,
+            userName: user?.name ?? "Anónimo",
+            tourName: tour?.name ?? "Alojamiento",
+          };
+        })
+      );
+
+      setEnrichedReviews(enriched);
+    };
+
+    loadData();
+  }, []);
 
   return enrichedReviews;
 };

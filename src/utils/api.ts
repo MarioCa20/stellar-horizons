@@ -156,7 +156,12 @@ export const getUsers = async (): Promise<User[]> => {
   return data.results ?? [];
 };
 
-export const getReviews = (): Review[] => mockData.reviews; // por cambiar a API
+export const getReviews = async (): Promise<Review[]> => {
+  const res = await fetch(`${API_BASE_URL}reviews/`);
+  if (!res.ok) return [];
+  const data = await res.json();
+  return data.results ?? [];
+};
 
 export const getUserById = async (id: number): Promise<User | undefined> => {
   const res = await fetch(`${API_BASE_URL}users/${id}/`);
@@ -202,7 +207,9 @@ export const getTours = async (): Promise<Tour[]> => {
 export const getTourById = async (id: number): Promise<Tour | undefined> => {
   const res = await fetch(`${API_BASE_URL}tours/${id}/`);
   if (!res.ok) return undefined;
-  return await res.json();
+  const data = await res.json();
+  return data;      
+
 };
 
 export async function getFilteredTours(params: {
@@ -257,11 +264,11 @@ export const getAccommodations = async (): Promise<Accommodation[]> => {
   return data.results ?? [];
 };
 
-export const getAccommodationsById = async (id: number): Promise<Accommodation | undefined> => {
+export const getAccommodationById = async (id: number): Promise<Accommodation | undefined> => {
   const res = await fetch(`${API_BASE_URL}accommodations/${id}/`);
   if (!res.ok) return undefined;
   const data = await res.json();
-  return data.results ?? [];
+  return data;
 };
 
 export async function getFilteredAccommodations(params: {
