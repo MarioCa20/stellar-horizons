@@ -87,6 +87,24 @@ export interface AuthResponse {
   refresh: string;
 }
 
+export interface UserCredentials {
+  nit: string;
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface CreatedUserResponse {
+  id: number;
+  email: string;
+  name: string;
+  nit: string;
+  is_active: boolean;
+  is_staff: boolean;
+  is_superuser: boolean;
+  last_login: string;
+}
+
 /**
  * Mock API Service
  *
@@ -111,6 +129,24 @@ export const login = async (email: string, password: string): Promise<AuthRespon
   }
 
   return response.json();
+};
+
+export const createUser = async (credentials: UserCredentials): Promise<CreatedUserResponse> => {
+  const response = await fetch(`${API_BASE_URL}users/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || "No se pudo crear el usuario.");
+  }
+
+  const data = await response.json();
+  return data as CreatedUserResponse;
 };
 
 export const getUsers = async (): Promise<User[]> => {
