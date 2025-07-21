@@ -3,13 +3,26 @@ import { useParams } from "react-router-dom";
 import { Footer } from "../../components/Footer";
 import { ReviewCard } from "../../components/ReviewCard";
 import { useEnrichedReviews } from "../../hooks/useEnrichedReviews";
-import { getAccommodationsById } from "../../utils/api";
+import { getAccommodationById, type Accommodation } from "../../utils/api";
 import styles from "../ToursDetails/TourDetails.module.css";
+import { useEffect, useState } from "react";
 
 export const AccommodationsDetails = () => {
   const { accommodationId } = useParams();
-  const accommdation = getAccommodationsById(Number(accommodationId));
+  const [accommodation, setAccommodation] = useState<Accommodation | undefined>(undefined);
   const reviews = useEnrichedReviews();
+
+  useEffect(() => {
+    const fetchAccommodation = async () => {
+      console.log("Fetching accommodation with ID:", accommodationId);
+      if (accommodationId) {
+        const data = await getAccommodationById(Number(accommodationId));
+        setAccommodation(data);
+        console.log("Accommodation data:", data);
+      }
+    };
+    fetchAccommodation();
+  }, [accommodationId]);
 
   return (
     <Container style={{ padding: "1rem" }}>
@@ -19,12 +32,12 @@ export const AccommodationsDetails = () => {
           <Card>
             <Card.Img
               variant="top"
-              src={accommdation?.image}
+              src={accommodation?.image}
               style={{ height: "50vh", objectFit: "cover" }}
             ></Card.Img>
             <Card.Body>
-              <Card.Title>{accommdation?.name}</Card.Title>
-              <Card.Text>{accommdation?.description}</Card.Text>
+              <Card.Title>{accommodation?.name}</Card.Title>
+              <Card.Text>{accommodation?.description}</Card.Text>
             </Card.Body>
           </Card>
         </div>
@@ -35,11 +48,11 @@ export const AccommodationsDetails = () => {
             <Card.Body>
               <Card.Title className="d-flex justify-content-between">
                 <span>Precio:</span>
-                <small className="text-muted">${accommdation?.price}</small>
+                <small className="text-muted">${accommodation?.price}</small>
               </Card.Title>
               <Card.Title className="d-flex justify-content-between">
                 <span>Habitaciones:</span>
-                <small className="text-muted">{accommdation?.rooms}</small>
+                <small className="text-muted">{accommodation?.rooms}</small>
               </Card.Title>
               <div className="d-flex justify-content-end mt-3">
                 <Button variant="primary">Comprar</Button>
