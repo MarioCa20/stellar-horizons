@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { login } from "../../utils/api";
+import { createUser, login, type CreatedUserResponse, type UserCredentials } from "../../utils/api";
 import { clearAuthStateLocalStorage } from "../../utils/localStorage";
 
 interface AuthState {
@@ -18,7 +18,6 @@ const initialState: AuthState = {
     error: null,
 };
 
-// AsyncThunk para login con fetch
 export const loginUser = createAsyncThunk<
     { access: string; refresh: string }, // tipo de respuesta
     { email: string; password: string }, // payload que recibe
@@ -28,8 +27,21 @@ export const loginUser = createAsyncThunk<
         const data = await login(email, password);
         return data; // { access, refresh }
     } catch {
-        return thunkAPI.rejectWithValue("Error de red o del servidor");
+        return thunkAPI.rejectWithValue("Verifique sus credenciales.");
     }
+});
+
+export const registerUser = createAsyncThunk<
+  CreatedUserResponse,
+  UserCredentials,
+  { rejectValue: string }
+>("auth/registerUser", async (credentials, thunkAPI) => {
+  try {
+    const user = await createUser(credentials);
+    return user;
+  } catch (error: any) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
 });
 
 const authSlice = createSlice({
@@ -59,6 +71,20 @@ const authSlice = createSlice({
             .addCase(loginUser.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload || "Error desconocido";
+            });
+
+        builder
+            .addCase(registerUser.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(registerUser.fulfilled, (state) => {
+                state.loading = false;
+                // no se actualizan tokens aquí directamente
+            })
+            .addCase(registerUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload || "Error al registrarse";
             });
     },
 });
