@@ -223,8 +223,9 @@ export const TourManagement = () => {
                   <Form.Label>Precio</Form.Label>
                   <Form.Control
                     type="number"
+                    min={0}
                     value={formData.price}
-                    onChange={(e) => setFormData({ ...formData, price: Number(e.target.value) })}
+                    onChange={(e) => setFormData({ ...formData, price: Math.max(0, Number(e.target.value)) })}
                     required
                   />
                   {formErrors.price && (
@@ -237,8 +238,9 @@ export const TourManagement = () => {
                   <Form.Label>Cupos disponibles</Form.Label>
                   <Form.Control
                     type="number"
+                    min={1}
                     value={formData.availableSpots}
-                    onChange={(e) => setFormData({ ...formData, availableSpots: Number(e.target.value) })}
+                    onChange={(e) => setFormData({ ...formData, availableSpots: Math.max(1, Number(e.target.value)) })}
                     required
                   />
                   {formErrors.available_spots && (

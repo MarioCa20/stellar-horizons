@@ -420,3 +420,74 @@ export const deleteTour = async (id: number): Promise<void> => {
  * 3. Document complex queries
  * 4. Consider adding unit tests for new methods
  */
+
+export const createAccommodation = async (accommodation: {
+  name: string;
+  destination?: number;
+  price: number;
+  rooms: number;
+  image?: File | string | null;
+  description: string;
+}): Promise<Accommodation> => {
+  // Si no se pasa destination, genera un número aleatorio de 5 dígitos
+  const destination = typeof accommodation.destination === 'number' && !isNaN(accommodation.destination)
+    ? accommodation.destination
+    : Math.floor(10000 + Math.random() * 90000);
+  const formData = new FormData();
+  formData.append('name', accommodation.name);
+  formData.append('destination', String(destination));
+  formData.append('price', String(accommodation.price));
+  formData.append('rooms', String(accommodation.rooms));
+  formData.append('description', accommodation.description);
+  if (accommodation.image instanceof File) {
+    formData.append('image', accommodation.image);
+  } else if (typeof accommodation.image === 'string' && accommodation.image) {
+    formData.append('image', accommodation.image);
+  }
+  const res = await fetch(`${API_BASE_URL}accommodations/`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Response(JSON.stringify(errorData), { status: res.status });
+  }
+  return await res.json();
+};
+
+export const updateAccommodation = async (
+  id: number,
+  accommodation: {
+    name?: string;
+    destination?: number;
+    price?: number;
+    rooms?: number;
+    image?: File | string | null;
+    description?: string;
+  }
+): Promise<Accommodation> => {
+  const formData = new FormData();
+  if (accommodation.name) formData.append('name', accommodation.name);
+  if (accommodation.destination !== undefined) formData.append('destination', String(Number(accommodation.destination)));
+  if (accommodation.price !== undefined) formData.append('price', String(accommodation.price));
+  if (accommodation.rooms !== undefined) formData.append('rooms', String(accommodation.rooms));
+  if (accommodation.description) formData.append('description', accommodation.description);
+  if (accommodation.image instanceof File) {
+    formData.append('image', accommodation.image);
+  } else if (typeof accommodation.image === 'string' && accommodation.image) {
+    formData.append('image', accommodation.image);
+  }
+  const res = await fetch(`${API_BASE_URL}accommodations/${id}/`, {
+    method: 'PATCH',
+    body: formData,
+  });
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Response(JSON.stringify(errorData), { status: res.status });
+  }
+  return await res.json();
+};
+
+export const deleteAccommodation = async (id: number): Promise<void> => {
+  await fetch(`${API_BASE_URL}accommodations/${id}/`, { method: 'DELETE' });
+};
