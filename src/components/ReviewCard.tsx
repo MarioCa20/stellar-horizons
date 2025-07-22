@@ -6,7 +6,7 @@ interface ReviewCardProps {
     comment: string;
     date: string;
     userName: string;
-    tourName: string | null;
+    //tourName: string | null;
   };
 }
 
@@ -16,7 +16,7 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
       <Card.Body>
         <Card.Title className="d-flex justify-content-between align-items-center">
           <strong>{review.userName}</strong>
-          <small className="text-muted">{review.tourName}</small>
+          <small className="text-muted">{}</small>
         </Card.Title>
 
         <div className="mb-2 text-warning" style={{ fontSize: "1.2rem" }}>

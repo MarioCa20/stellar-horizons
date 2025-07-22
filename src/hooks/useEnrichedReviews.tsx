@@ -3,7 +3,7 @@ import {
   getBookings,
   getReviews,
   getUserById,
-  getTourById,
+  //getTourById,
 } from "../utils/api";
 
 export interface EnrichedReview {
@@ -12,7 +12,6 @@ export interface EnrichedReview {
   comment: string;
   date: string;
   userName: string;
-  tourName: string | null;
 }
 
 export const useEnrichedReviews = (): EnrichedReview[] => {
@@ -27,9 +26,7 @@ export const useEnrichedReviews = (): EnrichedReview[] => {
         reviews.map(async (review) => {
           const booking = bookings.find((b) => b.id === review.bookingId);
           const user = booking ? await getUserById(booking.userId) : undefined;
-          const tour = booking?.tourId
-            ? await getTourById(booking.tourId)
-            : null;
+          //const tour = booking ?.tourId ? await getTourById(booking.tourId) : null;
 
           return {
             id: review.id,
@@ -37,7 +34,6 @@ export const useEnrichedReviews = (): EnrichedReview[] => {
             comment: review.comment,
             date: review.date,
             userName: user?.name ?? "Anónimo",
-            tourName: tour?.name ?? "Alojamiento",
           };
         })
       );

@@ -6,24 +6,35 @@ import { useEnrichedReviews } from "../../hooks/useEnrichedReviews";
 import { getAccommodationById, type Accommodation } from "../../utils/api";
 import styles from "../ToursDetails/TourDetails.module.css";
 import { useEffect, useState } from "react";
+import { AddReviewModal } from "../../components/addReviewModal";
+import { useAuth } from "../../hooks/useAuth";
 
 export const AccommodationsDetails = () => {
+  const isAuth = useAuth();
   const { accommodationId } = useParams();
   const [accommodation, setAccommodation] = useState<Accommodation | undefined>(undefined);
   const reviews = useEnrichedReviews();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const fetchAccommodation = async () => {
-      console.log("Fetching accommodation with ID:", accommodationId);
+    const loadAccommodation = async () => {
       if (accommodationId) {
         const data = await getAccommodationById(Number(accommodationId));
         setAccommodation(data);
-        console.log("Accommodation data:", data);
       }
     };
-    fetchAccommodation();
+    loadAccommodation();
   }, [accommodationId]);
 
+  const handleSubmitReview = (rating: number, comment: string) => {
+    console.log("Nueva reseña:", { rating, comment });
+    // Aquí va el POST a la API
+    setShowModal(false);
+  };
+
+  if (!accommodation) return <p>Cargando información del alojamiento...</p>;
+  if (!reviews) return <p>Cargando reseñas...</p>;
+    
   return (
     <Container style={{ padding: "1rem" }}>
       <h2 className="resultado mt-3">Detalle del Alojamiento</h2>
@@ -34,7 +45,7 @@ export const AccommodationsDetails = () => {
               variant="top"
               src={accommodation?.image}
               style={{ height: "50vh", objectFit: "cover" }}
-            ></Card.Img>
+            />
             <Card.Body>
               <Card.Title>{accommodation?.name}</Card.Title>
               <Card.Text>{accommodation?.description}</Card.Text>
@@ -60,7 +71,14 @@ export const AccommodationsDetails = () => {
       </div>
 
       <div style={{ marginTop: "2rem" }}>
-        <h3 className="d-flex justify-content-center">Reseñas descatadas</h3>
+        <h3 className="d-flex justify-content-center">Reseñas destacadas</h3>
+        {isAuth && (
+                <div className="d-flex justify-content-end mt-3">
+                  <Button variant="primary" onClick={() => setShowModal(true)}>
+                    Agregar Reseña
+                  </Button>
+                </div>
+              )}
         <Row xs={1} md={2} lg={3} className="g-4 mt-1">
           {reviews.map((review) => (
             <Col key={review.id}>
@@ -70,6 +88,11 @@ export const AccommodationsDetails = () => {
         </Row>
       </div>
       <Footer />
+      <AddReviewModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={handleSubmitReview}
+      />
     </Container>
   );
 };
