@@ -1,4 +1,5 @@
 import mockData from "../data/mock_data.json";
+import type { AccommodationFormData } from "./validations/accommodation";
 
 // URL base de la API
 export const API_BASE_URL = "http://127.0.0.1:8000/api/v1/";
@@ -39,8 +40,8 @@ export interface Destination {
 export interface Accommodation {
   id: number;
   name: string;
-  destinationId: number;
-  price: number;
+  destination: number;
+  price: string;
   rooms: number;
   image: string;
   description: string;
@@ -208,7 +209,7 @@ export const getTourById = async (id: number): Promise<Tour | undefined> => {
   const res = await fetch(`${API_BASE_URL}tours/${id}/`);
   if (!res.ok) return undefined;
   const data = await res.json();
-  return data;      
+  return data;
 
 };
 
@@ -270,6 +271,73 @@ export const getAccommodationById = async (id: number): Promise<Accommodation | 
   const data = await res.json();
   return data;
 };
+
+export const createAccommodation = async (
+  accommodation: AccommodationFormData
+): Promise<Accommodation> => {
+  const form = new FormData();
+  form.append("name", accommodation.name);
+  form.append("price", String(accommodation.price));
+  form.append("rooms", String(accommodation.rooms));
+  form.append("description", accommodation.description);
+  form.append("destination", String(accommodation.destination));
+  if (accommodation.imageFile) {
+    form.append("image", accommodation.imageFile);
+  }
+
+  const res = await fetch(`${API_BASE_URL}accommodations/`, {
+    method: "POST",
+    body: form,
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.detail || "Error al crear el alojamiento");
+  }
+
+  return await res.json();
+};
+
+
+export const updateAccommodation = async (
+  id: number,
+  accommodation: AccommodationFormData,
+): Promise<Accommodation> => {
+  const form = new FormData();
+  form.append("name", accommodation.name);
+  form.append("price", String(accommodation.price));
+  form.append("rooms", String(accommodation.rooms));
+  form.append("description", accommodation.description);
+  form.append("destination", String(accommodation.destination));
+  if (accommodation.imageFile) {
+    form.append("image", accommodation.imageFile);
+  }
+
+  const res = await fetch(`${API_BASE_URL}accommodations/${id}/`, {
+    method: "PATCH",
+    body: form,
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.detail || "Error al actualizar el alojamiento");
+  }
+
+  return await res.json();
+};
+
+
+export const deleteAccommodation = async (id: number): Promise<void> => {
+  const res = await fetch(`${API_BASE_URL}accommodations/${id}/`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.detail || "Error al eliminar el alojamiento");
+  }
+};
+
 
 export async function getFilteredAccommodations(params: {
   activity?: number | null;
