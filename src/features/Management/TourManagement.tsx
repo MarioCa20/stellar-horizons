@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { Container, Row, Col, Form, Button, Table, Modal, Toast } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Container, Row, Col, Form, Button, Table, Modal, Toast, Spinner } from 'react-bootstrap';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import * as api from '../../utils/api';
 import type { Tour } from '../../utils/api';
 
 export const TourManagement = () => {
-  const [tours, setTours] = useState(api.getTours());
+  const [tours, setTours] = useState<Tour[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [formData, setFormData] = useState<Omit<Tour, 'id'>>({
@@ -13,34 +14,99 @@ export const TourManagement = () => {
     description: '',
     duration: '',
     price: 0,
-    image: '',
+    image: '', // Guardará la URL o el nombre del archivo
     availableSpots: 1,
   });
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [notification, setNotification] = useState({ show: false, message: '', type: 'success' });
+  const [formErrors, setFormErrors] = useState<Record<string, string[]>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (editingId) {
-      const updated = tours.map(t => (t.id === editingId ? { ...t, ...formData } : t));
-      setTours(updated);
-      showNotification('Tour actualizado con éxito', 'success');
+  useEffect(() => {
+    api.getTours().then((data: Tour[]) => {
+      // Mapea los tours para usar availableSpots en vez de available_spots
+      const mappedTours = data.map(tour => ({
+        ...tour,
+        availableSpots: tour.available_spots ?? tour.availableSpots,
+      }));
+      setTours(mappedTours);
+      setLoading(false);
+    });
+  }, []);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setImageFile(file);
+    if (file) {
+      setImagePreview(URL.createObjectURL(file));
+      setFormData({ ...formData, image: file.name });
     } else {
-      const newTour: Tour = { ...formData, id: tours.length + 1 };
-      setTours([...tours, newTour]);
-      showNotification('Tour creado con éxito', 'success');
+      setImagePreview(null);
+      setFormData({ ...formData, image: '' });
     }
-    resetForm();
   };
 
-  const handleDelete = (id: number) => {
-    setTours(tours.filter(t => t.id !== id));
-    showNotification('Tour eliminado con éxito', 'success');
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormErrors({});
+    try {
+      const payload = {
+        name: formData.name,
+        description: formData.description,
+        duration: `${formData.duration} días`, // Duración como "X días"
+        price: formData.price,
+        available_spots: formData.availableSpots,
+        image: imageFile || undefined, // Solo envía si hay nueva imagen
+      };
+      let createdOrUpdated;
+      if (editingId) {
+        createdOrUpdated = await api.updateTour(editingId, payload);
+        setTours(ts => ts.map(t => t.id === editingId ? createdOrUpdated : t));
+        showNotification('Tour actualizado con éxito', 'success');
+      } else {
+        createdOrUpdated = await api.createTour(payload);
+        setTours(ts => [...ts, createdOrUpdated]);
+        showNotification('Tour creado con éxito', 'success');
+      }
+      resetForm();
+    } catch (err) {
+      // Si el error es una respuesta HTTP, intenta extraer los errores
+      if (err instanceof Response) {
+        err.json().then((errorData: Record<string, string[]>) => {
+          setFormErrors(errorData);
+        });
+      } else if (err instanceof Error && err.message) {
+        setFormErrors({ general: [err.message] });
+      } else {
+        setFormErrors({ general: ['Error desconocido'] });
+      }
+      showNotification('Error al guardar tour', 'error');
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      await api.deleteTour(id);
+      setTours(ts => ts.filter(t => t.id !== id));
+      showNotification('Tour eliminado con éxito', 'success');
+    } catch {
+      showNotification('Error al eliminar tour', 'error');
+    }
   };
 
   const handleEdit = (id: number) => {
     const tour = tours.find(t => t.id === id);
     if (tour) {
-      setFormData({ ...tour });
+      const { id, ...rest } = tour;
+      // Extrae cantidad de días del string duración
+      const dias = rest.duration.match(/(\d+)/)?.[0] || '';
+      setFormData({
+        ...rest,
+        duration: dias,
+        availableSpots: rest.availableSpots ?? rest.available_spots,
+        image: rest.image || '',
+      });
+      setImagePreview(rest.image && rest.image.startsWith('http') ? rest.image : `/public/images/${rest.image}`);
       setEditingId(id);
       setShowForm(true);
     }
@@ -48,6 +114,8 @@ export const TourManagement = () => {
 
   const resetForm = () => {
     setFormData({ name: '', description: '', duration: '', price: 0, image: '', availableSpots: 1 });
+    setImageFile(null);
+    setImagePreview(null);
     setEditingId(null);
     setShowForm(false);
   };
@@ -67,7 +135,11 @@ export const TourManagement = () => {
           </Button>
         </Col>
       </Row>
-
+      {loading ? (
+        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '200px' }}>
+          <Spinner animation="border" variant="primary" />
+        </div>
+      ) : (
       <Table responsive hover>
         <thead>
           <tr>
@@ -101,12 +173,17 @@ export const TourManagement = () => {
           ))}
         </tbody>
       </Table>
-
+      )}
       <Modal show={showForm} onHide={resetForm} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>{editingId ? 'Editar Tour' : 'Nuevo Tour'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {formErrors.general && (
+            <div className="alert alert-danger mb-3">
+              {formErrors.general.join(', ')}
+            </div>
+          )}
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col md={6}>
@@ -117,16 +194,28 @@ export const TourManagement = () => {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                   />
+                  {formErrors.name && (
+                    <div className="text-danger small">{formErrors.name.join(', ')}</div>
+                  )}
                 </Form.Group>
               </Col>
               <Col md={6}>
                 <Form.Group className="mb-3">
                   <Form.Label>Duración</Form.Label>
-                  <Form.Control
-                    value={formData.duration}
-                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                    required
-                  />
+                  <div className="d-flex align-items-center gap-2">
+                    <Form.Control
+                      type="number"
+                      min={1}
+                      value={formData.duration}
+                      onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                      required
+                      style={{ width: '80px' }}
+                    />
+                    <span>días</span>
+                  </div>
+                  {formErrors.duration && (
+                    <div className="text-danger small">{formErrors.duration.join(', ')}</div>
+                  )}
                 </Form.Group>
               </Col>
               <Col md={6}>
@@ -138,6 +227,9 @@ export const TourManagement = () => {
                     onChange={(e) => setFormData({ ...formData, price: Number(e.target.value) })}
                     required
                   />
+                  {formErrors.price && (
+                    <div className="text-danger small">{formErrors.price.join(', ')}</div>
+                  )}
                 </Form.Group>
               </Col>
               <Col md={6}>
@@ -149,15 +241,51 @@ export const TourManagement = () => {
                     onChange={(e) => setFormData({ ...formData, availableSpots: Number(e.target.value) })}
                     required
                   />
+                  {formErrors.available_spots && (
+                    <div className="text-danger small">{formErrors.available_spots.join(', ')}</div>
+                  )}
                 </Form.Group>
               </Col>
               <Col md={12}>
                 <Form.Group className="mb-3">
-                  <Form.Label>Imagen (URL)</Form.Label>
+                  <Form.Label>Imagen</Form.Label>
                   <Form.Control
-                    value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
                   />
+                  {(imagePreview || (formData.image && !imageFile)) && (
+                    <div className="mt-2">
+                      <img
+                        src={
+                          imagePreview ||
+                          (formData.image.startsWith('http')
+                            ? formData.image
+                            : `/public/images/${formData.image}`)
+                        }
+                        alt="Preview"
+                        style={{ maxWidth: '200px', maxHeight: '150px', borderRadius: '8px', border: '1px solid #ddd' }}
+                      />
+                    </div>
+                  )}
+                  {formErrors.image && (
+                    <div className="text-danger small">{formErrors.image.join(', ')}</div>
+                  )}
+                </Form.Group>
+              </Col>
+              <Col md={12}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Descripción</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    required
+                  />
+                  {formErrors.description && (
+                    <div className="text-danger small">{formErrors.description.join(', ')}</div>
+                  )}
                 </Form.Group>
               </Col>
             </Row>
@@ -167,7 +295,6 @@ export const TourManagement = () => {
           </Form>
         </Modal.Body>
       </Modal>
-
       <Toast
         show={notification.show}
         onClose={() => setNotification({ ...notification, show: false })}

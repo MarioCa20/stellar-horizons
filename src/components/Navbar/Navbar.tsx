@@ -1,4 +1,4 @@
-import { BedDouble, Calendar, Home, Info, LogIn, LogOut, Plane, Users } from "lucide-react";
+import { BedDouble, Calendar, Home, Info, LogIn, LogOut, Plane, Users, Edit } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Navbar as BsNavbar, Container, Nav } from "react-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
@@ -28,7 +28,7 @@ export const Navbar = () => {
       variant="dark"
       fixed="top"
       expand="md"
-      className={styles.navbar}
+      className={`navbar-space ${styles.navbar}`}
       expanded={expanded}
     >
       <Container fluid>
@@ -92,20 +92,24 @@ export const Navbar = () => {
                 <Nav.Link
                   as={NavLink}
                   to="/management/accommodations"
-                  className="d-flex align-items-center gap-2 py-2 px-3"
+                  className={`d-flex align-items-center gap-2 py-2 px-3 ${styles.adminTab}`}
                   onClick={() => setExpanded(false)}
                 >
-                  <BedDouble size={18} />
-                  <span>Alojamientos CRUD</span>
+                  <Edit size={18} />
+                  <span>
+                    Gestión Alojamientos
+                  </span>
                 </Nav.Link>
                 <Nav.Link
                   as={NavLink}
                   to="/management/tours"
-                  className="d-flex align-items-center gap-2 py-2 px-3"
+                  className={`d-flex align-items-center gap-2 py-2 px-3 ${styles.adminTab}`}
                   onClick={() => setExpanded(false)}
                 >
-                  <Plane size={18} />
-                  <span>Tours CRUD</span>
+                  <Edit size={18} />
+                  <span>
+                    Gestión Tours
+                  </span>
                 </Nav.Link>
                 <Nav.Link
                   onClick={handleLogout}

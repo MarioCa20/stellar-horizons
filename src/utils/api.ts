@@ -346,6 +346,65 @@ export const deleteBooking = async (id: number): Promise<void> => {
   await fetch(`${API_BASE_URL}bookings/${id}/`, { method: "DELETE" });
 };
 
+// Métodos para Tour ------------------------
+export const createTour = async (tour: {
+  name: string;
+  description: string;
+  duration: string;
+  price: number;
+  available_spots: number;
+  image?: File | null;
+}): Promise<Tour> => {
+  const formData = new FormData();
+  formData.append('name', tour.name);
+  formData.append('description', tour.description);
+  formData.append('duration', tour.duration);
+  formData.append('price', String(tour.price));
+  formData.append('available_spots', String(tour.available_spots));
+  if (tour.image) {
+    formData.append('image', tour.image);
+  }
+  const res = await fetch(`${API_BASE_URL}tours/`, {
+    method: "POST",
+    body: formData,
+  });
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Response(JSON.stringify(errorData), { status: res.status });
+  }
+  return await res.json();
+};
+
+export const updateTour = async (id: number, tour: {
+  name?: string;
+  description?: string;
+  duration?: string;
+  price?: number;
+  available_spots?: number;
+  image?: File | null;
+}): Promise<Tour> => {
+  const formData = new FormData();
+  if (tour.name) formData.append('name', tour.name);
+  if (tour.description) formData.append('description', tour.description);
+  if (tour.duration) formData.append('duration', tour.duration);
+  if (tour.price !== undefined) formData.append('price', String(tour.price));
+  if (tour.available_spots !== undefined) formData.append('available_spots', String(tour.available_spots));
+  if (tour.image) formData.append('image', tour.image);
+  const res = await fetch(`${API_BASE_URL}tours/${id}/`, {
+    method: "PATCH",
+    body: formData,
+  });
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Response(JSON.stringify(errorData), { status: res.status });
+  }
+  return await res.json();
+};
+
+export const deleteTour = async (id: number): Promise<void> => {
+  await fetch(`${API_BASE_URL}tours/${id}/`, { method: "DELETE" });
+};
+
 /**
  * DEVELOPER NOTE:
  * To add new methods, follow this pattern:

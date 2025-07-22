@@ -54,9 +54,6 @@ export const AccommodationsDetails = () => {
                 <span>Habitaciones:</span>
                 <small className="text-muted">{accommodation?.rooms}</small>
               </Card.Title>
-              <div className="d-flex justify-content-end mt-3">
-                <Button variant="primary">Comprar</Button>
-              </div>
             </Card.Body>
           </Card>
         </div>
